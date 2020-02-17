@@ -1,10 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import SimpleMap from "./SimpleMap.jsx";
+import SocialLogin from "./SocialLogin.jsx";
 
 class App extends Component {
-    render = () => {
-        return "Hello world!"
-    }
+  render = () => {
+    return (
+      <div>
+        <SocialLogin />
+        <SimpleMap />
+      </div>
+    );
+  };
 }
 
-
-export default App
+export default App;
