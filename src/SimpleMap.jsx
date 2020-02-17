@@ -1,9 +1,24 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const AnyReactComponent = ({ imgSource }) => (
+  <img height="30px" src={imgSource} />
+);
 
 class SimpleMap extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      stores: [
+        { latitude: 45.5017, longitude: -73.5673 },
+        { latitude: 45.5017, longitude: -73.6673 },
+        { latitude: 45.5017, longitude: -73.7673 },
+        { latitude: 45.5017, longitude: -73.8673 },
+        { latitude: 45.5017, longitude: -73.9673 },
+        { latitude: 45.5017, longitude: -74.0 }
+      ]
+    };
+  }
   static defaultProps = {
     center: {
       lat: 45.5017,
@@ -15,13 +30,20 @@ class SimpleMap extends Component {
   render() {
     return (
       // Important! Always set the container height explicitly
-      <div style={{ height: "50vh", width: "50%" }}>
+      <div style={{ height: "50vh", width: "100%" }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyBpxIhAuUfxs39WJO0sbSMJVU717st-z3o" }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
-          <AnyReactComponent lat={45.5117} lng={-73.5673} text="My Marker" />
+          {this.state.stores.map((store, idx) => (
+            <AnyReactComponent
+              key={idx}
+              lat={store.latitude}
+              lng={store.longitude}
+              imgSource="tennis-player.png"
+            />
+          ))}
         </GoogleMapReact>
       </div>
     );
