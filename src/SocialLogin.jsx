@@ -23,6 +23,7 @@ class SocialLogin extends Component {
     });
   };
   responseGoogle = response => {
+    console.log(response);
     this.setState({
       googleName: response.profileObj.name,
       googleEmail: response.profileObj.email,

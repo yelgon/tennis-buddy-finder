@@ -1,9 +1,39 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import GoogleMapReact from "google-map-react";
+import styled from "styled-components";
 
-const AnyReactComponent = ({ imgSource }) => (
-  <img height="30px" src={imgSource} />
-);
+const MarkerPopup = styled.div`
+  opacity: 0;
+  background: white;
+  border: 1px solid red;
+  width: fit-content;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 10%;
+`;
+
+const Marker = styled.div`
+  &:hover > ${MarkerPopup} {
+    opacity: 1;
+  }
+`;
+
+function AnyReactComponent({ imgSource }) {
+  const [showing, setShowing] = useState(false);
+  const handleClick = () => {
+    setShowing(!showing);
+  };
+  return (
+    <Marker onClick={handleClick}>
+      <MarkerPopup>
+        <div>hello hello hello</div>
+        {showing && <div>yelgon36@gmail.com</div>}
+      </MarkerPopup>
+
+      <img height="30px" src={imgSource} />
+    </Marker>
+  );
+}
 
 class SimpleMap extends Component {
   constructor(props) {
