@@ -9,7 +9,7 @@ const MarkerPopup = styled.div`
   width: fit-content;
   border: 1px solid black;
   padding: 5px;
-  border-radius: 10%;
+  border-radius: 3px;
 `;
 
 const Marker = styled.div`
@@ -25,12 +25,17 @@ function AnyReactComponent({ imgSource }) {
   };
   return (
     <Marker onClick={handleClick}>
-      <MarkerPopup>
-        <div>hello hello hello</div>
-        {showing && <div>yelgon36@gmail.com</div>}
-      </MarkerPopup>
-
       <img height="30px" src={imgSource} />
+      <MarkerPopup>
+        <div>YangohKim </div>
+        <div>Level:4.0</div>
+        {showing && (
+          <div>
+            <div>cell:438-926-2922</div>
+            <div>yelgon36@gmail.com</div>
+          </div>
+        )}
+      </MarkerPopup>
     </Marker>
   );
 }
@@ -54,13 +59,20 @@ class SimpleMap extends Component {
       lat: 45.5017,
       lng: -73.5673
     },
-    zoom: 11
+    zoom: 12
   };
 
   render() {
     return (
       // Important! Always set the container height explicitly
-      <div style={{ height: "50vh", width: "100%" }}>
+      <div
+        style={{
+          height: "60vh",
+          width: "100%"
+          // border: "2px solid red",
+          // borderRadius: "50px"
+        }}
+      >
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyBpxIhAuUfxs39WJO0sbSMJVU717st-z3o" }}
           defaultCenter={this.props.center}
