@@ -3,8 +3,12 @@ import GoogleMapReact from "google-map-react";
 import styled from "styled-components";
 
 const MarkerPopup = styled.div`
+  div {
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
   opacity: 0;
-  background: white;
+  background: rgb(203, 250, 127);
   border: 1px solid red;
   width: fit-content;
   border: 1px solid black;

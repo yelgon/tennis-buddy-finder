@@ -4,8 +4,7 @@ import GoogleLogin from "react-google-login";
 import styled from "styled-components";
 
 const FacebookWrapper = styled.div`
-  font-size: 10px;
-  padding: 10px;
+  padding: 5px;
   border: 1px solid red;
   text-align: center;
   justify-content: space-evenly;
