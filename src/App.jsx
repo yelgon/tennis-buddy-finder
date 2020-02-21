@@ -29,7 +29,7 @@ class App extends Component {
           <Route exact={true} path="/postCourt" render={this.renderPostCourt} />
           <Route
             exact={true}
-            path="lLevelGuide"
+            path="/LevelGuide"
             render={this.renderLevelGuide}
           />
           <Route
