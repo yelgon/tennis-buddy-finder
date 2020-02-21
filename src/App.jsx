@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import SimpleMap from "./SimpleMap.jsx";
 import SocialLogin from "./SocialLogin.jsx";
+import PlacesAuto from "./PlacesAuto.jsx";
 
 class App extends Component {
   render = () => {
     return (
       <div>
-        <SocialLogin />
-        <SimpleMap />
+        <PlacesAuto />
       </div>
+      // <div>
+      //   <SocialLogin />
+      //   <SimpleMap />
+      // </div>
     );
   };
 }

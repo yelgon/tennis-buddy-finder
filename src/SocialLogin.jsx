@@ -6,15 +6,16 @@ import styled from "styled-components";
 const FacebookWrapper = styled.div`
   padding: 5px;
   border: 1px solid red;
-  text-align: center;
-  justify-content: space-evenly;
   display: flex;
-  align-items: center;
 
   button {
     height: 60px;
     font-size: 1.5rem;
-    width: 100px;
+    border-radius: 5px;
+    width: fit-content;
+  }
+  div {
+    margin: 5px;
   }
 `;
 
@@ -49,21 +50,25 @@ class SocialLogin extends Component {
   render() {
     return (
       <FacebookWrapper>
-        <FacebookLogin
-          appId="224984985202688"
-          autoLoad={false}
-          fields="name,email,picture"
-          callback={this.responseFacebook}
-          textButton="f"
-        />
-        <GoogleLogin
-          clientId="219077069962-h5o4uoad3nvg7ou2d5947pvpqi97kbue.apps.googleusercontent.com"
-          buttonText="Login"
-          onSuccess={this.responseGoogle}
-          onFailure={this.responseGoogle}
-          cookiePolicy={"single_host_origin"}
-        />
-
+        <div>
+          {" "}
+          <FacebookLogin
+            appId="224984985202688"
+            autoLoad={false}
+            fields="name,email,picture"
+            callback={this.responseFacebook}
+            textButton="f"
+          />
+        </div>
+        <div>
+          <GoogleLogin
+            clientId="219077069962-h5o4uoad3nvg7ou2d5947pvpqi97kbue.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={this.responseGoogle}
+            onFailure={this.responseGoogle}
+            cookiePolicy={"single_host_origin"}
+          />
+        </div>
         {/* <div>
           {this.state.facebookEamil}
           {this.state.facebookUser}

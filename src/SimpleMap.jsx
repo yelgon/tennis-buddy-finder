@@ -13,7 +13,7 @@ const MarkerPopup = styled.div`
   width: fit-content;
   border: 1px solid black;
   padding: 5px;
-  border-radius: 3px;
+  border-radius: 10px;
 `;
 
 const Marker = styled.div`
@@ -73,8 +73,6 @@ class SimpleMap extends Component {
         style={{
           height: "60vh",
           width: "100%"
-          // border: "2px solid red",
-          // borderRadius: "50px"
         }}
       >
         <GoogleMapReact
