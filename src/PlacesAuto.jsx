@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import GoogleMapReact from "google-map-react";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
@@ -15,7 +16,7 @@ function PlacesAuto() {
     setAddress(value);
     setCoordinates(latLng);
   };
-
+  const zoom = 10;
   return (
     <div>
       <PlacesAutocomplete
@@ -46,9 +47,41 @@ function PlacesAuto() {
                 );
               })}
             </div>
+            <div
+              style={{
+                height: "60vh",
+                width: "100%"
+              }}
+            >
+              <GoogleMapReact
+                bootstrapURLKeys={{
+                  key: "AIzaSyBpxIhAuUfxs39WJO0sbSMJVU717st-z3o"
+                }}
+                defaultCenter={{
+                  lat: 45.5017,
+                  lng: -73.5673
+                }}
+                defaultZoom={zoom}
+              >
+                <AnyReactComponent
+                  lat={coordinates.lat}
+                  lng={coordinates.lng}
+                  imgSource="tennis.png"
+                />
+              </GoogleMapReact>
+            </div>
           </div>
         )}
       </PlacesAutocomplete>
+    </div>
+  );
+}
+
+function AnyReactComponent({ imgSource }) {
+  return (
+    <div>
+      <img height="30px" src={imgSource} />
+      <div>YangohKim </div>
     </div>
   );
 }
