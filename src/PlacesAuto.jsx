@@ -30,7 +30,10 @@ function PlacesAuto() {
             <p>Longitude: {coordinates.lng}</p>
             <p>Address: {address}</p>
 
-            <input {...getInputProps({ placeholder: "Type address" })} />
+            <input
+              style={{ width: "300px", margin: "10px", height: "20px" }}
+              {...getInputProps({ placeholder: "Type address" })}
+            />
 
             <div>
               {loading ? <div>...loading</div> : null}

@@ -1,21 +1,27 @@
 import React, { Component } from "react";
-import Sidebar from "./Sidebar.jsx";
+// import Sidebar from "./Sidebar.jsx";
 import { Route, BrowserRouter } from "react-router-dom";
-
-// import SimpleMap from "./SimpleMap.jsx";
-// import SocialLogin from "./SocialLogin.jsx";
-// import PlacesAuto from "./PlacesAuto.jsx";
+import SimpleMap from "./SimpleMap.jsx";
+import SocialLogin from "./SocialLogin.jsx";
+import PlacesAuto from "./PlacesAuto.jsx";
 
 class App extends Component {
+  renderHome = () => {
+    return <SimpleMap />;
+  };
+  renderLogin = () => {
+    return <SocialLogin />;
+  };
+  renderPostPlayer = () => {
+    return <PlacesAuto />;
+  };
   render = () => {
     return (
       <BrowserRouter>
+        <div>{/* <Sidebar /> */}</div>
         <div>
-          <Sidebar />
-        </div>
-        <div>
+          <Route exact={true} path="/" render={this.renderHome} />
           <Route exact={true} path="/login" render={this.renderLogin} />
-          <Route exact={true} path="/signup" render={this.renderSignup} />
           <Route
             exact={true}
             path="/matchBoard"
@@ -44,13 +50,3 @@ class App extends Component {
 }
 
 export default App;
-
-{
-  /* <div>
-          <PlacesAuto />
-        </div>
-        <div>
-          <SocialLogin />
-          <SimpleMap />
-        </div> */
-}

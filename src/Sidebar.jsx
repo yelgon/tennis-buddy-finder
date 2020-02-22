@@ -69,14 +69,6 @@ class Sidebar extends Component {
             </li>
             <li>
               <Link
-                to="/signup"
-                style={{ color: "#FFF", textDecoration: "none" }}
-              >
-                <i className="fas fa-pen"></i> SIGNUP
-              </Link>
-            </li>
-            <li>
-              <Link
                 to="/matchBoard"
                 style={{ color: "#FFF", textDecoration: "none" }}
               >
