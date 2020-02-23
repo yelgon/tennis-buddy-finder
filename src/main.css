@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500");
 body {
-  background-color: rgb(187, 187, 187);
+  background-color: white;
   /* color:rgb(203, 250, 127); */
   margin: 0;
 }
+
+/* Sidebar */
 .sidebar {
   position: fixed;
   left: -250px;
@@ -85,4 +87,124 @@ label #cancel {
 }
 #check:checked ~ section {
   margin-left: 250px;
+}
+section {
+  background-image: url("/static/section1.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+  height: 100vh;
+  transition: 0.5s;
+}
+/* Sidebar */
+
+/* logout buttton */
+.center {
+  position: absolute;
+  z-index: 101;
+  bottom: 3%;
+  right: 5%;
+}
+.checkbox {
+  position: relative;
+  width: 120px;
+  height: 30px;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #333, #000);
+  outline: none;
+  border-radius: 15px;
+  box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e,
+    inset 0 0 10px rgba(0, 0, 0, 1), 0 5px 20px rgba(0, 0, 0, 0.5),
+    inset 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.checkbox:checked {
+  background: linear-gradient(0deg, #6dd1ff, #20b7ff);
+  box-shadow: 0 0 2px #6dd1ff, 0 0 0 4px #353535, 0 0 0 5px #3e3e3e,
+    inset 0 0 10px rgba(0, 0, 0, 1), 0 5px 20px rgba(0, 0, 0, 0.5),
+    inset 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.checkbox::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 30px;
+  background: linear-gradient(0deg, #000, #6d6d6d);
+  border-radius: 15px;
+  box-shadow: 0 0 0 1px #232323;
+  transform: scale(0.98, 0.96);
+  transition: 0.5s;
+}
+.checkbox:checked::before {
+  left: 40px;
+}
+.checkbox::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 2px);
+  left: 65px;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(0deg, #6d6d6d, #000);
+  border-radius: 50%;
+  transition: 0.5s;
+}
+.checkbox:checked::after {
+  background: #63cdff;
+  left: 105px;
+  box-shadow: 0 0 5px #13b3ff, 0 0 15px #13b3ff;
+}
+/* logout button */
+
+/* tennis level guide*/
+
+.progress-done {
+  max-width: 150px;
+  border: 1px solid black;
+}
+.circle {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+.level {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  height: 50px;
+}
+.level button:hover {
+  cursor: pointer;
+}
+.level button {
+  font-size: 15px;
+  font-weight: bold;
+  width: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  -webkit-appearance: none;
+  background: linear-gradient(0deg, #d6ff20, #f6fceb);
+  box-shadow: 0 0 1px #6dd1ff, 0 0 0 1px #353535, 0 0 0 1px #3e3e3e,
+    inset 0 0 10px rgb(8, 8, 8), 0 5px 20px rgba(0, 0, 0, 0.5),
+    inset 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.tennisLevelWrapper {
+  width: 100%;
+  padding-top: 100px;
+}
+.tennisLevelWrapper h2 {
+  margin-top: 100px;
+}
+
+@media (max-width: 685px) {
+  .circle {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
 }

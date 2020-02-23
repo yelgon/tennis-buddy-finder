@@ -71,7 +71,7 @@ class SimpleMap extends Component {
       // Important! Always set the container height explicitly
       <div
         style={{
-          height: "60vh",
+          height: "100vh",
           width: "100%"
         }}
       >
@@ -85,7 +85,7 @@ class SimpleMap extends Component {
               key={idx}
               lat={store.latitude}
               lng={store.longitude}
-              imgSource="tennis-player.png"
+              imgSource="./static/tennis-player.png"
             />
           ))}
         </GoogleMapReact>
