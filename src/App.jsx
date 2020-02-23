@@ -4,11 +4,6 @@ import { Route, BrowserRouter } from "react-router-dom";
 import SimpleMap from "./SimpleMap.jsx";
 import SocialLogin from "./SocialLogin.jsx";
 import PlacesAuto from "./PlacesAuto.jsx";
-import styled from "styled-components";
-
-const Main = styled.div`
-  display: grid;
-`;
 
 class App extends Component {
   renderHome = () => {
