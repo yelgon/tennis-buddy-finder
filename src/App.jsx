@@ -1,9 +1,14 @@
 import React, { Component } from "react";
-// import Sidebar from "./Sidebar.jsx";
+import Sidebar from "./Sidebar.jsx";
 import { Route, BrowserRouter } from "react-router-dom";
 import SimpleMap from "./SimpleMap.jsx";
 import SocialLogin from "./SocialLogin.jsx";
 import PlacesAuto from "./PlacesAuto.jsx";
+import styled from "styled-components";
+
+const Main = styled.div`
+  display: grid;
+`;
 
 class App extends Component {
   renderHome = () => {
@@ -18,9 +23,11 @@ class App extends Component {
   render = () => {
     return (
       <BrowserRouter>
-        <div>{/* <Sidebar /> */}</div>
         <div>
-          <Route exact={true} path="/" render={this.renderHome} />
+          <Sidebar />
+        </div>
+        <div>
+          <Route exact={true} path="/home" render={this.renderHome} />
           <Route exact={true} path="/login" render={this.renderLogin} />
           <Route
             exact={true}

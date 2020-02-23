@@ -1,54 +1,18 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
 
-const SideMenubar = styled.div`
-  font-family: arial;
-  ul li {
-    display: block;
-    line-height: 60px;
-    height: 100%;
-    width: 100%;
-    font-size: 15px;
-    color: white;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid black;
-    margin-top: 0;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
-  }
-  .fas {
-    margin-right: 10px;
-    margin-left: 20px;
-  }
-  header {
-    font-size: 22px;
-    color: white;
-    text-align: center;
-    line-height: 60px;
-    background: #063146;
-    user-select: none;
-  }
-  position: fixed;
-  left: 0;
-  width: 250px;
-  height: 100%;
-  background: #042331;
-`;
+import { Link } from "react-router-dom";
 
 class Sidebar extends Component {
   render() {
     return (
       <div>
-        <input type="checkbox" className="checkbox" />
+        <input type="checkbox" id="check" />
         <label htmlFor="check">
-          <i className="fas fa-bars"></i>
-          <i className="fas fa-times"></i>
+          <i className="fas fa-bars" id="btn"></i>
+          <i className="fas fa-times" id="cancel"></i>
         </label>
 
-        <SideMenubar>
+        <div className="sidebar">
           <header>My App</header>
           <ul style={{ margin: "0", padding: "0" }}>
             <li>
@@ -108,7 +72,7 @@ class Sidebar extends Component {
               </Link>
             </li>
           </ul>
-        </SideMenubar>
+        </div>
       </div>
     );
   }
