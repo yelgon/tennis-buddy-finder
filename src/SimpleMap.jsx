@@ -12,8 +12,9 @@ const MarkerPopup = styled.div`
   background: rgb(203, 250, 127);
   width: fit-content;
   border: 1px solid black;
-  padding: 5px;
+  padding: 3px;
   border-radius: 10px;
+  font-weight: bold;
 `;
 
 const Marker = styled.div`
@@ -25,7 +26,7 @@ const TennisCourt = ({ imgSource }) => {
   return <img height="40px" src={imgSource} />;
 };
 
-function AnyReactComponent({ imgSource }) {
+function AnyReactComponent({ imgSource, name, level, cell, email }) {
   const [showing, setShowing] = useState(false);
   const handleClick = () => {
     setShowing(!showing);
@@ -34,12 +35,12 @@ function AnyReactComponent({ imgSource }) {
     <Marker onClick={handleClick}>
       <img height="30px" src={imgSource} />
       <MarkerPopup>
-        <div>YangohKim </div>
-        <div>Level:4.0</div>
+        <div>{name} </div>
+        <div>Level:{level}</div>
         {showing && (
           <div>
-            <div>cell:438-926-2922</div>
-            <div>yelgon36@gmail.com</div>
+            <div>cell:{cell}</div>
+            <div>{email}</div>
           </div>
         )}
       </MarkerPopup>
@@ -53,7 +54,14 @@ class SimpleMap extends Component {
     this.state = {
       tennisCourt: [{ latitude: 45.5017, longitude: -73.5673 }],
       stores: [
-        { latitude: 45.5117, longitude: -73.5673 },
+        {
+          latitude: 45.5117,
+          longitude: -73.5673,
+          name: "Yangoh",
+          level: "4.0",
+          cell: "438-926-2922",
+          email: "yelgon36@gmail.com"
+        },
         { latitude: 45.5017, longitude: -73.6673 },
         { latitude: 45.5017, longitude: -73.7673 },
         { latitude: 45.5017, longitude: -73.8673 },
@@ -103,6 +111,10 @@ class SimpleMap extends Component {
               lat={store.latitude}
               lng={store.longitude}
               imgSource="./static/tennis-player.png"
+              name={store.name}
+              level={store.level}
+              cell={store.cell}
+              email={store.email}
             />
           ))}
           <TennisCourt
