@@ -21,6 +21,9 @@ const Marker = styled.div`
     opacity: 1;
   }
 `;
+const TennisCourt = ({ imgSource }) => {
+  return <img height="40px" src={imgSource} />;
+};
 
 function AnyReactComponent({ imgSource }) {
   const [showing, setShowing] = useState(false);
@@ -48,8 +51,9 @@ class SimpleMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      tennisCourt: [{ latitude: 45.5017, longitude: -73.5673 }],
       stores: [
-        { latitude: 45.5017, longitude: -73.5673 },
+        { latitude: 45.5117, longitude: -73.5673 },
         { latitude: 45.5017, longitude: -73.6673 },
         { latitude: 45.5017, longitude: -73.7673 },
         { latitude: 45.5017, longitude: -73.8673 },
@@ -101,6 +105,11 @@ class SimpleMap extends Component {
               imgSource="./static/tennis-player.png"
             />
           ))}
+          <TennisCourt
+            lat={this.state.tennisCourt.latitude}
+            lng={this.state.tennisCourt.longitude}
+            imgSource="./static/tennis.png"
+          />
         </GoogleMapReact>
       </div>
     );

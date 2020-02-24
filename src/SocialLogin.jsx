@@ -7,7 +7,7 @@ const FacebookWrapper = styled.div`
   padding: 5px;
   border: 1px solid red;
   display: flex;
-
+  justify-content: center;
   button {
     height: 60px;
     font-size: 1.5rem;

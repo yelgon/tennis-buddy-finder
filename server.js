@@ -1,7 +1,13 @@
 let express = require("express");
 let app = express();
+let multer = require("multer");
+let upload = multer();
+let cookieParser = require("cookie-parser");
+app.use(cookieParser());
 let reloadMagic = require("./reload-magic.js");
-
+let passwords = {};
+let sessions = {};
+let messages = [];
 reloadMagic(app);
 
 app.use("/", express.static("build")); // Needed for the HTML and JS files

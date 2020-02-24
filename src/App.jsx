@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Sidebar from "./Sidebar.jsx";
 import { Route, BrowserRouter } from "react-router-dom";
 import SimpleMap from "./SimpleMap.jsx";
-import SocialLogin from "./SocialLogin.jsx";
+import Login from "./Login.jsx";
+import Signup from "./Signup.jsx";
 import PlacesAuto from "./PlacesAuto.jsx";
 import LogoutButton from "./LogoutButton.jsx";
 import LevelGuide from "./LevelGuide.jsx";
@@ -11,8 +12,11 @@ class App extends Component {
   renderHome = () => {
     return <SimpleMap />;
   };
+  renderSignup = () => {
+    return <Signup />;
+  };
   renderLogin = () => {
-    return <SocialLogin />;
+    return <Login />;
   };
   renderPostPlayer = () => {
     return <PlacesAuto />;
@@ -34,6 +38,7 @@ class App extends Component {
           <Route exact={true} path="/" render={this.renderMain} />
           <Route exact={true} path="/home" render={this.renderHome} />
           <Route exact={true} path="/login" render={this.renderLogin} />
+          <Route exact={true} path="/signup" render={this.renderSignup} />
           <Route
             exact={true}
             path="/matchBoard"
