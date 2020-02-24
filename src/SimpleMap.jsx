@@ -6,10 +6,10 @@ const MarkerPopup = styled.div`
   div {
     padding-top: 2px;
     padding-bottom: 2px;
+    text-align: left;
   }
   opacity: 0;
   background: rgb(203, 250, 127);
-  border: 1px solid red;
   width: fit-content;
   border: 1px solid black;
   padding: 5px;
@@ -72,9 +72,22 @@ class SimpleMap extends Component {
       <div
         style={{
           height: "100vh",
-          width: "100%"
+          width: "100%",
+          textAlign: "center"
         }}
       >
+        <input
+          type="text"
+          placeholder="Search"
+          style={{
+            position: "absolute",
+            zIndex: "100",
+            padding: "3px",
+            width: "40%",
+            height: "20px",
+            margin: "10px"
+          }}
+        />
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyBpxIhAuUfxs39WJO0sbSMJVU717st-z3o" }}
           defaultCenter={this.props.center}
