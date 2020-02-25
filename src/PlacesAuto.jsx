@@ -4,56 +4,126 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
+import styled from "styled-components";
+const Wrapper = styled.div`
+  display: flex;
+  position: relative;
+  height: 100vh;
+`;
+const Button = styled.div`
+  position: absolute;
+  left: 50%;
+  bottom: 25%;
+  transform: translate(-50%, -50%);
+`;
 
 function PlacesAuto() {
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState({ lat: null, lng: null });
+  const [playerName, setPlayerName] = useState("");
+  const [playerEmail, setPlayerEmail] = useState("");
+  const [playerPhone, setPlayerPhone] = useState("");
+  const [playerLevel, setPlayerLevel] = useState("");
 
   const handleSelect = async value => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
-    console.log(value);
+    console.log(latLng); //latLng = {lat:45.520, lng:-73.661} (one object)
+    console.log(playerName);
     setAddress(value);
     setCoordinates(latLng);
   };
+  const setPostPlayer = () => {
+    console.log(playerName, playerEmail, playerPhone, playerLevel);
+  };
   const zoom = 10;
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
         onSelect={handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <p>Latitude: {coordinates.lat}</p>
-            <p>Longitude: {coordinates.lng}</p>
-            <p>Address: {address}</p>
-
-            <input
-              style={{ width: "300px", margin: "10px", height: "20px" }}
-              {...getInputProps({ placeholder: "Type address" })}
-            />
-
-            <div>
-              {loading ? <div>...loading</div> : null}
-
-              {suggestions.map(suggestion => {
-                const style = {
-                  backgroundColor: suggestion.active ? "#F9CE00" : "#fff"
-                };
-
-                return (
-                  <div {...getSuggestionItemProps(suggestion, { style })}>
-                    {suggestion.description}
-                  </div>
-                );
-              })}
-            </div>
+          <Wrapper>
             <div
               style={{
-                height: "60vh",
-                width: "100%"
+                marginLeft: "5%",
+                marginRight: "10px",
+                marginTop: "10%"
+              }}
+            >
+              <h2>Post as a player</h2>
+              <Button>
+                <button onClick={setPostPlayer}>POST</button>
+              </Button>
+              <p>Latitude: {coordinates.lat}</p>
+              <p>Longitude: {coordinates.lng}</p>
+
+              <div>
+                {" "}
+                Name
+                <input
+                  type="text"
+                  value={playerName}
+                  onChange={e => setPlayerName(e.target.value)}
+                />
+              </div>
+              <div>
+                {" "}
+                Email
+                <input
+                  type="text"
+                  value={playerEmail}
+                  onChange={e => setPlayerEmail(e.target.value)}
+                />
+              </div>
+              <div>
+                {" "}
+                Phone
+                <input
+                  type="text"
+                  value={playerPhone}
+                  onChange={e => setPlayerPhone(e.target.value)}
+                />
+              </div>
+              <div>
+                {" "}
+                Level
+                <input
+                  type="text"
+                  value={playerLevel}
+                  onChange={e => setPlayerLevel(e.target.value)}
+                />
+              </div>
+              <p>Address: {address}</p>
+
+              <input
+                style={{ width: "300px", margin: "10px", height: "20px" }}
+                {...getInputProps({ placeholder: "Type address" })}
+              />
+              <div>
+                {loading ? <div>...loading</div> : null}
+
+                {suggestions.map(suggestion => {
+                  const style = {
+                    backgroundColor: suggestion.active ? "#F9CE00" : "#fff"
+                  };
+
+                  return (
+                    <div {...getSuggestionItemProps(suggestion, { style })}>
+                      {suggestion.description}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div
+              style={{
+                height: "50vh",
+                width: "60%",
+                marginTop: "10%"
               }}
             >
               <GoogleMapReact
@@ -61,19 +131,19 @@ function PlacesAuto() {
                   key: "AIzaSyBpxIhAuUfxs39WJO0sbSMJVU717st-z3o"
                 }}
                 defaultCenter={{
-                  lat: 45.5017,
-                  lng: -73.5673
+                  lat: 45.54017,
+                  lng: -73.6873
                 }}
                 defaultZoom={zoom}
               >
                 <AnyReactComponent
                   lat={coordinates.lat}
                   lng={coordinates.lng}
-                  imgSource="tennis.png"
+                  imgSource="./static/tennis.png"
                 />
               </GoogleMapReact>
             </div>
-          </div>
+          </Wrapper>
         )}
       </PlacesAutocomplete>
     </div>
@@ -84,7 +154,6 @@ function AnyReactComponent({ imgSource }) {
   return (
     <div>
       <img height="30px" src={imgSource} />
-      <div>YangohKim </div>
     </div>
   );
 }
