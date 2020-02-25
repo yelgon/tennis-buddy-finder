@@ -13,9 +13,10 @@ reloadMagic(app);
 
 let dbo = undefined;
 let url =
-  "mongodb+srv://bob:bobsue@cluster0-mijro.mongodb.net/test?retryWrites=true&w=majority";
-MongoClient.connect(url, { useUnifiedTopology: true }, (err, db) => {
-  dbo = db.db("tennis-buddy-finder");
+  "mongodb+srv://bob:bob123@cluster0-mijro.mongodb.net/test?retryWrites=true&w=majority";
+
+MongoClient.connect(url, { useUnifiedTopology: true }).then(client => {
+  dbo = client.db("tennis-buddy-finder");
 });
 
 app.use("/", express.static("build")); // Needed for the HTML and JS files
@@ -51,7 +52,7 @@ app.post("/new-player", upload.none(), async (req, res) => {
     });
     res.send(JSON.stringify({ success: true }));
   } catch (err) {
-    console.log("/signup", err);
+    console.log("/new-player", err);
     res.send(JSON.stringify({ success: false }));
   }
 });

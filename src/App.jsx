@@ -9,6 +9,19 @@ import LogoutButton from "./LogoutButton.jsx";
 import LevelGuide from "./LevelGuide.jsx";
 
 class App extends Component {
+  //   constructor(props){
+  //     super(props)
+  //     this.state={store:[]}
+  //   }
+  // componentDidMount(){
+  //   AllData()
+
+  // }
+
+  // AllData=()=>{
+
+  // }
+
   renderHome = () => {
     return <SimpleMap />;
   };

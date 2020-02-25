@@ -116,9 +116,9 @@ class SimpleMap extends Component {
               email={store.email}
             />
           ))}
-          <TennisCourt
-            lat={this.state.tennisCourt.latitude}
-            lng={this.state.tennisCourt.longitude}
+          <AnyReactComponent
+            lat={this.state.tennisCourt[0].latitude}
+            lng={this.state.tennisCourt[0].longitude}
             imgSource="./static/tennis.png"
           />
         </GoogleMapReact>
