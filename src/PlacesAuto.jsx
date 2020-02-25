@@ -35,10 +35,25 @@ function PlacesAuto() {
   };
   const setPostPlayer = () => {
     console.log(playerName, playerEmail, playerPhone, playerLevel);
+    const data = new FormData();
+    data.append("playerName", playerName);
+    data.append("playerLevel", playerLevel);
+    data.append("playerEmail", playerEmail);
+    data.append("playerPhone", playerPhone);
+    data.append("address", address);
+    data.append("lat", coordinates.lat);
+    data.append("lng", coordinates.lng);
+    fetch("/new-player", { method: "POST", body: data });
+    alert("Congratulations, You registered as a player");
+    setPlayerName("");
+    setAddress("");
+    setPlayerEmail("");
+    setPlayerPhone("");
+    setPlayerLevel("");
   };
   const zoom = 10;
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{}}>
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
@@ -57,8 +72,6 @@ function PlacesAuto() {
               <Button>
                 <button onClick={setPostPlayer}>POST</button>
               </Button>
-              <p>Latitude: {coordinates.lat}</p>
-              <p>Longitude: {coordinates.lng}</p>
 
               <div>
                 {" "}
@@ -96,10 +109,10 @@ function PlacesAuto() {
                   onChange={e => setPlayerLevel(e.target.value)}
                 />
               </div>
-              <p>Address: {address}</p>
+              <div>Address: {address}</div>
 
               <input
-                style={{ width: "300px", margin: "10px", height: "20px" }}
+                style={{ width: "300px" }}
                 {...getInputProps({ placeholder: "Type address" })}
               />
               <div>

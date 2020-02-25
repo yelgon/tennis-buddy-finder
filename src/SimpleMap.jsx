@@ -14,7 +14,6 @@ const MarkerPopup = styled.div`
   border: 1px solid black;
   padding: 3px;
   border-radius: 10px;
-  font-weight: bold;
 `;
 
 const Marker = styled.div`
