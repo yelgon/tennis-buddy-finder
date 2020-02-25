@@ -116,7 +116,7 @@ class SimpleMap extends Component {
               email={store.email}
             />
           ))}
-          <AnyReactComponent
+          <TennisCourt
             lat={this.state.tennisCourt[0].latitude}
             lng={this.state.tennisCourt[0].longitude}
             imgSource="./static/tennis.png"
