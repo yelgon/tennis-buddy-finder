@@ -109,7 +109,7 @@ class SimpleMap extends Component {
               key={idx}
               lat={store.latitude}
               lng={store.longitude}
-              imgSource="./static/tennis-player.png"
+              imgSource="/static/tennis-player.png"
               name={store.name}
               level={store.level}
               cell={store.cell}
@@ -119,7 +119,7 @@ class SimpleMap extends Component {
           <TennisCourt
             lat={this.state.tennisCourt[0].latitude}
             lng={this.state.tennisCourt[0].longitude}
-            imgSource="./static/tennis.png"
+            imgSource="/static/court.jpg"
           />
         </GoogleMapReact>
       </div>

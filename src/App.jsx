@@ -7,20 +7,32 @@ import Signup from "./Signup.jsx";
 import PlacesAuto from "./PlacesAuto.jsx";
 import LogoutButton from "./LogoutButton.jsx";
 import LevelGuide from "./LevelGuide.jsx";
+import { connect } from "react-redux";
 
-class App extends Component {
+class UnconnectedApp extends Component {
   //   constructor(props){
   //     super(props)
   //     this.state={store:[]}
   //   }
-  // componentDidMount(){
-  //   AllData()
+  componentDidMount() {
+    AllPlayers();
+    AllCourts();
+  }
 
-  // }
-
-  // AllData=()=>{
-
-  // }
+  AllPlayers = async () => {
+    let response = await fetch("/all-players");
+    let body = await response.text();
+    console.log("all-players response", body);
+    body = JSON.parse(body);
+    this.props.dispatch({ type: "SET_PLAYERS", players: body });
+  };
+  AllCourts = async () => {
+    let response = await fetch("/all-courts");
+    let body = await response.text();
+    console.log("all-courts response", body);
+    body = JSON.parse(body);
+    this.props.dispatch({ type: "SET_COURTS", court: body });
+  };
 
   renderHome = () => {
     return <SimpleMap />;
@@ -78,5 +90,14 @@ class App extends Component {
     );
   };
 }
-
+let mapStateToProps = st => {
+  return {
+    // query: st.searchQuery,
+    // snup: st.signup,
+    // lgin: st.loggedIn,
+    // players: st.players,
+    // courts: st.tennisCourts
+  };
+};
+let App = connect(mapStateToProps)(UnconnectedApp);
 export default App;

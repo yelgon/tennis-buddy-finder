@@ -57,6 +57,36 @@ app.post("/new-player", upload.none(), async (req, res) => {
   }
 });
 
+app.get("/all-players", (req, res) => {
+  console.log("request to /all-players");
+  dbo
+    .collection("players")
+    .find({})
+    .toArray((err, ps) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+      console.log("all-players", ps);
+      res.send(JSON.stringify(ps));
+    });
+});
+app.get("/all-courts", (req, res) => {
+  console.log("request to /all-courts");
+  dbo
+    .collection("tennis-courts")
+    .find({})
+    .toArray((err, ps) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+      console.log("all-courts", ps);
+      res.send(JSON.stringify(ps));
+    });
+});
 // Your endpoints go before this line
 
 app.all("/*", (req, res, next) => {
