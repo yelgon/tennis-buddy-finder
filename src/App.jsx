@@ -15,8 +15,8 @@ class UnconnectedApp extends Component {
   //     this.state={store:[]}
   //   }
   componentDidMount() {
-    AllPlayers();
-    AllCourts();
+    this.AllPlayers();
+    this.AllCourts();
   }
 
   AllPlayers = async () => {
