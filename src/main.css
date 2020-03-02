@@ -178,11 +178,13 @@ section {
 }
 .level button:hover {
   cursor: pointer;
+  opacity: 1;
 }
 .level button {
+  opacity: 0.5;
   font-size: 15px;
   font-weight: bold;
-  width: 200px;
+  width: 50px;
   margin-left: 10px;
   margin-right: 10px;
   border: none;
