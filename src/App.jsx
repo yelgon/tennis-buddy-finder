@@ -8,6 +8,7 @@ import PlacesAuto from "./PlacesAuto.jsx";
 import LogoutButton from "./LogoutButton.jsx";
 import LevelGuide from "./LevelGuide.jsx";
 import { connect } from "react-redux";
+import PostCourt from "./PostCourt.jsx";
 
 class UnconnectedApp extends Component {
   //   constructor(props){
@@ -51,6 +52,9 @@ class UnconnectedApp extends Component {
   };
   renderLevelGuide = () => {
     return <LevelGuide />;
+  };
+  renderPostCourt = () => {
+    return <PostCourt />;
   };
   render = () => {
     return (
