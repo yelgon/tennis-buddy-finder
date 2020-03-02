@@ -23,7 +23,7 @@ function PostCourt() {
   const [courtType, setCourtType] = useState("");
   const [courtPhone, setCourtPhone] = useState("");
   const [openHour, setOpenHour] = useState("");
-  const [images, setImages] = useState("");
+  const [images, setImages] = useState(""); //URL.createObjectURL()
 
   const handleSelect = async value => {
     const results = await geocodeByAddress(value);
