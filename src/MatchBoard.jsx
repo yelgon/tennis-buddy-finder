@@ -8,6 +8,8 @@ class Match extends Component {
   }
   dateHandler = e => {
     console.log(typeof e);
+    console.log(e);
+
     this.setState({ date: e });
   };
   nameHandler = e => {
@@ -35,6 +37,7 @@ class Match extends Component {
             <DateTimePicker
               onChange={this.dateHandler}
               value={this.state.date}
+              maxDetail="hour"
             />
           </div>
           <div>
@@ -48,7 +51,7 @@ class Match extends Component {
           </div>
           <input type="submit" value="POST" />
         </form>
-        {/* <div>date:{this.state.date}</div> */}
+        <div>date:{this.state.date.year}</div>
         <div>name:{this.state.name}</div>
         <div>level:{this.state.level}</div>
         <div>court:{this.state.court}</div>

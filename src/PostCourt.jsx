@@ -55,7 +55,6 @@ function PostCourt() {
     setCourtPhone("");
     setOpenHour("");
   };
-  const zoom = 10;
   return (
     <div style={{}}>
       <PlacesAutocomplete
