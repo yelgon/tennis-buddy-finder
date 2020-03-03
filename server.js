@@ -57,6 +57,39 @@ app.post("/new-player", upload.none(), async (req, res) => {
   }
 });
 
+app.post("/new-court", upload.none(), async (req, res) => {
+  console.log("new-court", req.body);
+  let courtName = req.body.courtName;
+  let courtType = req.body.courtType;
+  let courtPhone = req.body.courtPhone;
+  let openHour = req.body.openHour;
+  let address = req.body.address;
+  let lat = req.body.lat;
+  let lng = req.body.lng;
+
+  try {
+    const player = await dbo
+      .collection("tennis-courts")
+      .findOne({ courtName: courtName });
+    if (player) {
+      return res.send(JSON.stringify({ success: false }));
+    }
+    await dbo.collection("tennis-courts").insertOne({
+      courtName: courtName,
+      courtType: courtType,
+      courtPhone: courtPhone,
+      openHour: openHour,
+      address: address,
+      lat: lat,
+      lng: lng
+    });
+    res.send(JSON.stringify({ success: true }));
+  } catch (err) {
+    console.log("/new-court", err);
+    res.send(JSON.stringify({ success: false }));
+  }
+});
+
 app.get("/all-players", (req, res) => {
   console.log("request to /all-players");
   dbo

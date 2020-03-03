@@ -35,7 +35,7 @@ function PostCourt() {
   };
   const imageHandler = event => {
     setImages(event.target.files);
-    console.log(openHour);
+    console.log(images);
   };
   const setPostCourt = () => {
     console.log(courtName, courtType, courtPhone, openHour);
@@ -47,8 +47,8 @@ function PostCourt() {
     data.append("address", address);
     data.append("lat", coordinates.lat);
     data.append("lng", coordinates.lng);
-    fetch("/new-player", { method: "POST", body: data });
-    alert("Congratulations, You registered as a player");
+    fetch("/new-court", { method: "POST", body: data });
+    alert("Court uploaded");
     setCourtName("");
     setAddress("");
     setCourtType("");
