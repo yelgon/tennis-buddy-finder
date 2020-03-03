@@ -38,7 +38,7 @@ function PostCourt() {
     console.log(openHour);
   };
   const setPostCourt = () => {
-    console.log(courtName, courtType, playerPhone, playerLevel);
+    console.log(courtName, courtType, courtPhone, openHour);
     const data = new FormData();
     data.append("courtName", courtName);
     data.append("courtType", courtType);

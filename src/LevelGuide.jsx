@@ -1,11 +1,5 @@
 import React, { Component } from "react";
 import { Circle } from "rc-progress";
-import styled from "styled-components";
-
-const Opa = styled.div`
-  opacity: 1;
-`;
-const Opacity = () => {};
 
 class TennisLevel extends Component {
   constructor() {

@@ -9,6 +9,7 @@ import LogoutButton from "./LogoutButton.jsx";
 import LevelGuide from "./LevelGuide.jsx";
 import { connect } from "react-redux";
 import PostCourt from "./PostCourt.jsx";
+import MatchBoard from "./MatchBoard.jsx";
 
 class UnconnectedApp extends Component {
   //   constructor(props){
@@ -55,6 +56,9 @@ class UnconnectedApp extends Component {
   };
   renderPostCourt = () => {
     return <PostCourt />;
+  };
+  renderMatchBoard = () => {
+    return <MatchBoard />;
   };
   render = () => {
     return (
