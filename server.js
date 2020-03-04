@@ -57,7 +57,7 @@ app.post("/new-player", upload.none(), async (req, res) => {
   }
 });
 
-app.post("/new-court", upload.none(), async (req, res) => {
+app.post("/new-court", upload.array("images"), async (req, res) => {
   console.log("new-court", req.body);
   let courtName = req.body.courtName;
   let courtType = req.body.courtType;
@@ -66,6 +66,8 @@ app.post("/new-court", upload.none(), async (req, res) => {
   let address = req.body.address;
   let lat = req.body.lat;
   let lng = req.body.lng;
+  let img = req.files;
+  console.log(img);
 
   try {
     const player = await dbo

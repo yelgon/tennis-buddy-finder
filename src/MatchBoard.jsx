@@ -37,7 +37,7 @@ class Match extends Component {
             <DateTimePicker
               onChange={this.dateHandler}
               value={this.state.date}
-              maxDetail="hour"
+              // maxDetail="hour"
             />
           </div>
           <div>
@@ -51,7 +51,7 @@ class Match extends Component {
           </div>
           <input type="submit" value="POST" />
         </form>
-        <div>date:{this.state.date.year}</div>
+        <div>date:{this.state.date.toString()}</div>
         <div>name:{this.state.name}</div>
         <div>level:{this.state.level}</div>
         <div>court:{this.state.court}</div>

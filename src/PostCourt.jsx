@@ -23,7 +23,8 @@ function PostCourt() {
   const [courtType, setCourtType] = useState("");
   const [courtPhone, setCourtPhone] = useState("");
   const [openHour, setOpenHour] = useState("");
-  const [images, setImages] = useState(""); //URL.createObjectURL()
+  const [images, setImages] = useState("");
+  const [previewImg, setPreviewImg] = useState([]); //URL.createObjectURL()
 
   const handleSelect = async value => {
     const results = await geocodeByAddress(value);
@@ -33,13 +34,24 @@ function PostCourt() {
     setAddress(value);
     setCoordinates(latLng);
   };
+  const imagePreview = files => {
+    const urlArray = Array.from(files).map(file => {
+      return URL.createObjectURL(file);
+    });
+    setPreviewImg(urlArray);
+  };
   const imageHandler = event => {
     setImages(event.target.files);
+    imagePreview(event.target.files);
     console.log(images);
+    // setPreviewImg() //URL.createObjectURL()
   };
   const setPostCourt = () => {
     console.log(courtName, courtType, courtPhone, openHour);
     const data = new FormData();
+    Array.from(images).forEach(img => {
+      data.append("images", img);
+    });
     data.append("courtName", courtName);
     data.append("courtType", courtType);
     data.append("courtPhone", courtPhone);
@@ -47,6 +59,7 @@ function PostCourt() {
     data.append("address", address);
     data.append("lat", coordinates.lat);
     data.append("lng", coordinates.lng);
+
     fetch("/new-court", { method: "POST", body: data });
     alert("Court uploaded");
     setCourtName("");
@@ -133,6 +146,9 @@ function PostCourt() {
                 })}
               </div>
               <input type="file" multiple onChange={imageHandler} />
+              {previewImg.map(e => {
+                return <img height="50px" src={e} />;
+              })}
             </div>
           </Wrapper>
         )}
