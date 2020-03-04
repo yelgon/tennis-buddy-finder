@@ -19,6 +19,7 @@ class UnconnectedApp extends Component {
   componentDidMount() {
     this.AllPlayers();
     this.AllCourts();
+    this.AllMatches();
   }
 
   AllPlayers = async () => {
@@ -34,6 +35,13 @@ class UnconnectedApp extends Component {
     console.log("all-courts response", body);
     body = JSON.parse(body);
     this.props.dispatch({ type: "SET_COURTS", court: body });
+  };
+  AllMatches = async () => {
+    let response = await fetch("/all-matches");
+    let body = await response.text();
+    console.log("all-matches response", body);
+    body = JSON.parse(body);
+    this.props.dispatch({ type: "SET_MATCHES", match: body });
   };
 
   renderHome = () => {

@@ -1,14 +1,11 @@
 let express = require("express");
 let app = express();
 let multer = require("multer");
-let upload = multer();
+let upload = multer({ dest: __dirname + "/uploads/" });
 let cookieParser = require("cookie-parser");
 app.use(cookieParser());
 let reloadMagic = require("./reload-magic.js");
 let MongoClient = require("mongodb").MongoClient;
-let passwords = {};
-let sessions = {};
-let messages = [];
 reloadMagic(app);
 
 let dbo = undefined;
@@ -21,6 +18,7 @@ MongoClient.connect(url, { useUnifiedTopology: true }).then(client => {
 
 app.use("/", express.static("build")); // Needed for the HTML and JS files
 app.use("/static", express.static("public")); // Needed for local assets
+app.use("/uploads", express.static("uploads"));
 
 // Your endpoints go after this line
 
@@ -56,6 +54,30 @@ app.post("/new-player", upload.none(), async (req, res) => {
     res.send(JSON.stringify({ success: false }));
   }
 });
+app.post("/new-match", upload.none(), async (req, res) => {
+  console.log("new-match", req.body);
+  let name = req.body.name;
+  let level = req.body.level;
+  let courtName = req.body.courtName;
+  let playType = req.body.playType;
+  let dayOfTheWeek = req.body.dayOfTheWeek;
+  let month = req.body.month;
+  let day = req.body.day;
+  let year = req.body.year;
+  let time = req.body.time;
+  await dbo.collection("match-board").insertOne({
+    name: name,
+    level: level,
+    courtName: courtName,
+    playType: playType,
+    dayOfTheWeek: dayOfTheWeek,
+    month: month,
+    day: day,
+    year: year,
+    time: time
+  });
+  res.send(JSON.stringify({ success: true }));
+});
 
 app.post("/new-court", upload.array("images"), async (req, res) => {
   console.log("new-court", req.body);
@@ -67,7 +89,9 @@ app.post("/new-court", upload.array("images"), async (req, res) => {
   let lat = req.body.lat;
   let lng = req.body.lng;
   let img = req.files;
+  let frontendPathArray = img.map(e => e.filename);
   console.log(img);
+  img.map(e => console.log(e.filename));
 
   try {
     const player = await dbo
@@ -83,7 +107,8 @@ app.post("/new-court", upload.array("images"), async (req, res) => {
       openHour: openHour,
       address: address,
       lat: lat,
-      lng: lng
+      lng: lng,
+      imagesPath: frontendPathArray
     });
     res.send(JSON.stringify({ success: true }));
   } catch (err) {
@@ -119,6 +144,21 @@ app.get("/all-courts", (req, res) => {
         return;
       }
       console.log("all-courts", ps);
+      res.send(JSON.stringify(ps));
+    });
+});
+app.get("/all-matches", (req, res) => {
+  console.log("request to /all-matches");
+  dbo
+    .collection("match-board")
+    .find({})
+    .toArray((err, ps) => {
+      if (err) {
+        console.log("error", err);
+        res.send("fail");
+        return;
+      }
+      console.log("all-matches", ps);
       res.send(JSON.stringify(ps));
     });
 });

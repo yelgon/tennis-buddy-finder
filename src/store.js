@@ -5,7 +5,8 @@ const initialState = {
   signup: false,
   searchQuery: "",
   players: [],
-  tennisCourts: []
+  tennisCourts: [],
+  matches: []
 };
 
 let reducer = (state, action) => {
@@ -14,6 +15,8 @@ let reducer = (state, action) => {
       return { ...state, players: action.players };
     case "SET_COURTS":
       return { ...state, tennisCourts: action.court };
+    case "SET_MATCHES":
+      return { ...state, matches: action.match };
   }
 };
 

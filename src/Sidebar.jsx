@@ -76,7 +76,7 @@ class Sidebar extends Component {
                   to="/yourReservation"
                   style={{ color: "#FFF", textDecoration: "none" }}
                 >
-                  <i className="fas fa-calendar-check"></i> YOUR RESERVATION
+                  <i className="fas fa-calendar-check"></i> YOUR MATCHES
                 </Link>
               </li>
             </UnorderedList>
