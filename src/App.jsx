@@ -12,10 +12,6 @@ import PostCourt from "./PostCourt.jsx";
 import MatchBoard from "./MatchBoard.jsx";
 
 class UnconnectedApp extends Component {
-  //   constructor(props){
-  //     super(props)
-  //     this.state={store:[]}
-  //   }
   componentDidMount() {
     this.AllPlayers();
     this.AllCourts();

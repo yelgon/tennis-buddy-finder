@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 const MarkerPopup = styled.div`
   div {
@@ -47,28 +48,8 @@ function AnyReactComponent({ imgSource, name, level, cell, email }) {
   );
 }
 
-class SimpleMap extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tennisCourt: [{ latitude: 45.5017, longitude: -73.5673 }],
-      stores: [
-        {
-          latitude: 45.5117,
-          longitude: -73.5673,
-          name: "Yangoh",
-          level: "4.0",
-          cell: "438-926-2922",
-          email: "yelgon36@gmail.com"
-        },
-        { latitude: 45.5017, longitude: -73.6673 },
-        { latitude: 45.5017, longitude: -73.7673 },
-        { latitude: 45.5017, longitude: -73.8673 },
-        { latitude: 45.5017, longitude: -73.9673 },
-        { latitude: 45.5017, longitude: -74.0 }
-      ]
-    };
-  }
+class UnconnectedSimpleMap extends Component {
+  
   static defaultProps = {
     center: {
       lat: 45.5017,
@@ -104,27 +85,36 @@ class SimpleMap extends Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
         >
-          {this.state.stores.map((store, idx) => (
+          {this.props.stores.map((player, idx) => (
             <AnyReactComponent
               key={idx}
-              lat={store.latitude}
-              lng={store.longitude}
+              lat={parseFloat(player.lat)}
+              lng={parseFloat(player.lng)}
               imgSource="/static/tennis-player.png"
-              name={store.name}
-              level={store.level}
-              cell={store.cell}
-              email={store.email}
+              name={player.playerName}
+              level={player.playerLevel}
+              cell={player.playerPhone}
+              email={player.playerEmail}
             />
           ))}
-          <TennisCourt
-            lat={this.state.tennisCourt[0].latitude}
-            lng={this.state.tennisCourt[0].longitude}
-            imgSource="/static/court.jpg"
-          />
+          {this.props.tennisCourt.map((court, idx) => {
+            return (
+              <TennisCourt
+                key={idx}
+                lat={court.lat}
+                lng={court.lng}
+                imgSource="/static/court.jpg"
+              />
+            );
+          })}
         </GoogleMapReact>
       </div>
     );
   }
 }
+let mapStateToProps = st => {
+  return { stores: st.players, tennisCourt: st.tennisCourts };
+};
+let SimpleMap = connect(mapStateToProps)(UnconnectedSimpleMap);
 
 export default SimpleMap;
