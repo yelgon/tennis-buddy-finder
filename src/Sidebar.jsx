@@ -24,10 +24,7 @@ class Sidebar extends Component {
           <ul style={{ margin: "0", padding: "0" }}>
             <UnorderedList>
               <li>
-                <Link
-                  to="/simpleMap"
-                  style={{ color: "#FFF", textDecoration: "none" }}
-                >
+                <Link to="/" style={{ color: "#FFF", textDecoration: "none" }}>
                   <i className="fas fa-home"></i> HOME
                 </Link>
               </li>

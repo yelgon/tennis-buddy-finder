@@ -48,8 +48,7 @@ class UnconnectedHome extends Component {
           <LogoutButton />
         </div>
         <div>
-          <Route exact={true} path="/" render={this.renderMain} />
-          <Route exact={true} path="/simpleMap" render={this.renderSimpleMap} />
+          <Route exact={true} path="/" render={this.renderSimpleMap} />
           <Route exact={true} path="/login" render={this.renderLogin} />
           <Route exact={true} path="/signup" render={this.renderSignup} />
           <Route

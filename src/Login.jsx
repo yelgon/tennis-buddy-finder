@@ -31,31 +31,34 @@ class UnconnectedLogin extends Component {
       this.props.dispatch({ type: "login-success", user: this.state.username });
     }
   };
+
   render = () => {
     return (
-      <form onSubmit={this.submitHandler} style={{ textAlign: "center" }}>
-        <div>
-          <input
-            type="text"
-            placeholder="Username"
-            value={this.state.username}
-            onChange={this.handleUsernameChange}
-          ></input>
-        </div>
-        <div>
-          <input
-            type="password"
-            placeholder="Password"
-            value={this.state.password}
-            onChange={this.handlePasswordChange}
-          ></input>
-        </div>
-        <div>
-          <input type="submit" value="LOGIN" />
-        </div>
-        <Link to="/signup">Sign up</Link>
-        <SocialLogin />
-      </form>
+      <div>
+        <form onSubmit={this.submitHandler} style={{ textAlign: "center" }}>
+          <div>
+            <input
+              type="text"
+              placeholder="Username"
+              value={this.state.username}
+              onChange={this.handleUsernameChange}
+            ></input>
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.handlePasswordChange}
+            ></input>
+          </div>
+          <div>
+            <input type="submit" value="LOGIN" />
+          </div>
+          <Link to="/signup">Sign up</Link>
+          <SocialLogin />
+        </form>
+      </div>
     );
   };
 }

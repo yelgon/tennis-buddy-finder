@@ -3,10 +3,15 @@ import { connect } from "react-redux";
 import Home from "./Home.jsx";
 
 class UnconnectedApp extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { page: false };
+  }
   componentDidMount() {
     this.AllPlayers();
     this.AllMatches();
     this.AllCourts();
+    this.props.dispatch({ type: "button", toggle: false });
   }
   AllPlayers = async () => {
     let response = await fetch("/all-players");
@@ -29,9 +34,18 @@ class UnconnectedApp extends Component {
     body = JSON.parse(body);
     this.props.dispatch({ type: "SET_MATCHES", match: body });
   };
-
+  passingThePage = () => {
+    this.setState({ page: true });
+  };
   render = () => {
-    return <Home />;
+    if (this.state.page) {
+      return <Home />;
+    }
+    return (
+      <div style={{ textAlign: "center" }}>
+        <button onClick={this.passingThePage}>TENNIS BUDDY FINDER</button>
+      </div>
+    );
   };
 }
 

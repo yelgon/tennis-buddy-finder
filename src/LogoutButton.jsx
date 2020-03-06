@@ -4,9 +4,11 @@ import { connect } from "react-redux";
 class UnconnectedLogoutButton extends Component {
   constructor(props) {
     super(props);
-    this.state = { checked: false };
+    this.state = { checked: this.props.toggle };
   }
-
+  componentDidMount() {
+    console.log(this.props.toggle);
+  }
   handleChange = event => {
     this.setState({ checked: event.target.checked });
     console.log(this.state.checked);
@@ -25,6 +27,8 @@ class UnconnectedLogoutButton extends Component {
     );
   }
 }
-
-let LogoutButton = connect()(UnconnectedLogoutButton);
+let mapStateToProps = st => {
+  return { toggle: st.button };
+};
+let LogoutButton = connect(mapStateToProps)(UnconnectedLogoutButton);
 export default LogoutButton;
