@@ -10,14 +10,16 @@ import LevelGuide from "./LevelGuide.jsx";
 import { connect } from "react-redux";
 import PostCourt from "./PostCourt.jsx";
 import MatchBoard from "./MatchBoard.jsx";
+import CourtDetail from "./CourtDetail.jsx";
 
 class UnconnectedApp extends Component {
+  componentWillMount() {
+    this.AllCourts();
+  }
   componentDidMount() {
     this.AllPlayers();
-    this.AllCourts();
     this.AllMatches();
   }
-
   AllPlayers = async () => {
     let response = await fetch("/all-players");
     let body = await response.text();
@@ -64,6 +66,9 @@ class UnconnectedApp extends Component {
   renderMatchBoard = () => {
     return <MatchBoard />;
   };
+  renderTennisCourt = routerData => {
+    return <CourtDetail courtName={routerData.match.params.court} />;
+  };
   render = () => {
     return (
       <BrowserRouter>
@@ -80,6 +85,11 @@ class UnconnectedApp extends Component {
             exact={true}
             path="/matchBoard"
             render={this.renderMatchBoard}
+          />
+          <Route
+            exact={true}
+            path="/detail/:court"
+            render={this.renderTennisCourt}
           />
           <Route
             exact={true}

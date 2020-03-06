@@ -2,6 +2,7 @@ import React, { Component, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const MarkerPopup = styled.div`
   div {
@@ -14,16 +15,54 @@ const MarkerPopup = styled.div`
   width: fit-content;
   border: 1px solid black;
   padding: 3px;
-  border-radius: 10px;
+  border-radius: 5px;
 `;
-
+const CourtMarkerPopup = styled.div`
+  div {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: left;
+  }
+  opacity: 0;
+  background: #ff82a9;
+  width: fit-content;
+  border: 1px solid black;
+  padding: 3px;
+  border-radius: 5px;
+`;
 const Marker = styled.div`
   &:hover > ${MarkerPopup} {
     opacity: 1;
   }
 `;
-const TennisCourt = ({ imgSource }) => {
-  return <img height="40px" src={imgSource} />;
+const CourtMarker = styled.div`
+  &:hover > ${CourtMarkerPopup} {
+    opacity: 1;
+  }
+`;
+const TennisCourt = ({ imgSource, name, phone, open, type }) => {
+  const [showing, setShowing] = useState(false);
+  const handleClick = () => {
+    setShowing(!showing);
+  };
+  return (
+    <CourtMarker onClick={handleClick}>
+      <img height="30px" src={imgSource} />
+      <CourtMarkerPopup>
+        <div>{name} </div>
+        <div>{phone}</div>
+        {showing && (
+          <div>
+            <div>{type}</div>
+            <div>{open}</div>
+            <div style={{ width: "100px" }}>
+              <Link to={"/detail/" + name}>click to detail</Link>
+            </div>
+          </div>
+        )}
+      </CourtMarkerPopup>
+    </CourtMarker>
+  );
 };
 
 function AnyReactComponent({ imgSource, name, level, cell, email }) {
@@ -49,7 +88,6 @@ function AnyReactComponent({ imgSource, name, level, cell, email }) {
 }
 
 class UnconnectedSimpleMap extends Component {
-  
   static defaultProps = {
     center: {
       lat: 45.5017,
@@ -104,6 +142,10 @@ class UnconnectedSimpleMap extends Component {
                 lat={court.lat}
                 lng={court.lng}
                 imgSource="/static/court.jpg"
+                name={court.courtName}
+                phone={court.courtPhone}
+                type={court.courtType}
+                open={court.openHour}
               />
             );
           })}
