@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 import SocialLogin from "./SocialLogin.jsx";
 import { Link } from "react-router-dom";
 
-class Login extends Component {
+class UnconnectedLogin extends Component {
   constructor(props) {
     super(props);
     this.state = { username: "", password: "" };
@@ -28,7 +28,7 @@ class Login extends Component {
     let body = JSON.parse(responseBody);
     if (body.success) {
       alert("Login Success");
-      // this.props.dispatch({ type: "login-success" });
+      this.props.dispatch({ type: "login-success", user: this.state.username });
     }
   };
   render = () => {
@@ -59,5 +59,5 @@ class Login extends Component {
     );
   };
 }
-// let Login = connect()(UnconnectedLogin);
+let Login = connect()(UnconnectedLogin);
 export default Login;

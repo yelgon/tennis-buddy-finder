@@ -25,7 +25,7 @@ class Sidebar extends Component {
             <UnorderedList>
               <li>
                 <Link
-                  to="/home"
+                  to="/simpleMap"
                   style={{ color: "#FFF", textDecoration: "none" }}
                 >
                   <i className="fas fa-home"></i> HOME

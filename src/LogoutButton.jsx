@@ -1,13 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-class LogoutButton extends Component {
+class UnconnectedLogoutButton extends Component {
   constructor(props) {
     super(props);
     this.state = { checked: false };
   }
+
   handleChange = event => {
     this.setState({ checked: event.target.checked });
-    console.log(this.state);
+    console.log(this.state.checked);
   };
 
   render() {
@@ -24,4 +26,5 @@ class LogoutButton extends Component {
   }
 }
 
+let LogoutButton = connect()(UnconnectedLogoutButton);
 export default LogoutButton;
