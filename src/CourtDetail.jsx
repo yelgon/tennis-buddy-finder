@@ -11,7 +11,7 @@ class UnconnectedCourtDetail extends Component {
     };
   }
   componentDidMount() {
-    console.log(this.props.court.imagesPath);
+    console.log(this.state.courtName.imagesPath);
   }
   render() {
     return (
@@ -22,6 +22,9 @@ class UnconnectedCourtDetail extends Component {
         <div>{this.state.courtName.courtPhone}</div>
         <div>{this.state.courtName.openHour}</div>
         <div>{this.state.courtName.address}</div>
+        {this.state.courtName.imagesPath.map((e, idx) => {
+          return <img src={e} key={idx} />;
+        })}
       </div>
     );
   }

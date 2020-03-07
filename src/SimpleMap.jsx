@@ -139,8 +139,8 @@ class UnconnectedSimpleMap extends Component {
             return (
               <TennisCourt
                 key={idx}
-                lat={court.lat}
-                lng={court.lng}
+                lat={parseFloat(court.lat)}
+                lng={parseFloat(court.lng)}
                 imgSource="/static/court.jpg"
                 name={court.courtName}
                 phone={court.courtPhone}

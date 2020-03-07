@@ -67,6 +67,7 @@ function PostCourt() {
     setCourtType("");
     setCourtPhone("");
     setOpenHour("");
+    setPreviewImg([]);
   };
   return (
     <div style={{}}>
