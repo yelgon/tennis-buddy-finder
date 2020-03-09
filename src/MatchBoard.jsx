@@ -111,7 +111,6 @@ class UnconnectedMatchBoard extends Component {
             <DateTimePicker
               onChange={this.dateHandler}
               value={this.state.date}
-              // maxDetail="hour"
             />
           </div>
           <input type="submit" value="POST" />

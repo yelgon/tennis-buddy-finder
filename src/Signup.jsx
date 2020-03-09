@@ -23,27 +23,30 @@ class Signup extends Component {
   };
   render = () => {
     return (
-      <form onSubmit={this.submitHandler} style={{ textAlign: "center" }}>
-        <div>
-          <input
-            type="text"
-            placeholder="Username"
-            value={this.state.usernameInput}
-            onChange={this.usernameChange}
-          ></input>
-        </div>
-        <div>
-          <input
-            type="password"
-            placeholder="Password"
-            value={this.state.passwordInput}
-            onChange={this.passwordChange}
-          ></input>
-        </div>
-        <div>
-          <input type="submit" value="SIGNUP" />
-        </div>
-      </form>
+      <div>
+        <div>Sign up</div>
+        <form onSubmit={this.submitHandler} style={{ textAlign: "center" }}>
+          <div>
+            <input
+              type="text"
+              placeholder="Username"
+              value={this.state.usernameInput}
+              onChange={this.usernameChange}
+            ></input>
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              value={this.state.passwordInput}
+              onChange={this.passwordChange}
+            ></input>
+          </div>
+          <div>
+            <input type="submit" value="SIGNUP" />
+          </div>
+        </form>
+      </div>
     );
   };
 }

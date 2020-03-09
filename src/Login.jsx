@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import SocialLogin from "./SocialLogin.jsx";
 import { Link } from "react-router-dom";
+import Signup from "./Signup.jsx";
 
 class UnconnectedLogin extends Component {
   constructor(props) {
@@ -29,12 +30,15 @@ class UnconnectedLogin extends Component {
     if (body.success) {
       alert("Login Success");
       this.props.dispatch({ type: "login-success", user: this.state.username });
+      this.setState({ username: "", password: "" });
     }
   };
 
   render = () => {
     return (
       <div>
+        <Signup />
+        <div>Login</div>
         <form onSubmit={this.submitHandler} style={{ textAlign: "center" }}>
           <div>
             <input
@@ -55,7 +59,6 @@ class UnconnectedLogin extends Component {
           <div>
             <input type="submit" value="LOGIN" />
           </div>
-          <Link to="/signup">Sign up</Link>
           <SocialLogin />
         </form>
       </div>
