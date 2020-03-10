@@ -147,8 +147,8 @@ function PostCourt() {
                 })}
               </div>
               <input type="file" multiple onChange={imageHandler} />
-              {previewImg.map(e => {
-                return <img height="50px" src={e} />;
+              {previewImg.map((e, idx) => {
+                return <img height="50px" src={e} key={idx} />;
               })}
             </div>
           </Wrapper>
