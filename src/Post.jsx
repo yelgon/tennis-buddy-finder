@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 
-class UnconnectedPost extends Component {
+class Post extends Component {
   constructor(props) {
     super(props);
     this.state = { buttonName: "" };
   }
   componentDidMount() {
-    console.log(this.props.currentUser, this.props.contents.name);
-    if (this.props.currentUser === this.props.name) {
-      this.setState({ buttonName: "Delete" });
+    console.log(this.props.user, this.props.contents.name);
+    if (this.props.user === this.props.contents.name) {
+      return this.setState({ buttonName: "Delete" });
     }
     this.setState({ buttonName: "Participate" });
   }
@@ -24,14 +23,11 @@ class UnconnectedPost extends Component {
         <div>{this.props.contents.month}</div>
         <div>{this.props.contents.day}</div>
         <div>{this.props.contents.year}</div>
-        <div>{this.props.contents.time}</div>
+        <div>{this.props.contents.time}h</div>
         <button>{this.state.buttonName}</button>
       </div>
     );
   }
 }
-let mapStateToProps = state => {
-  return { currentUser: state.currentUser };
-};
-let Post = connect(mapStateToProps)(UnconnectedPost);
+
 export default Post;

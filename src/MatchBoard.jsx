@@ -116,7 +116,7 @@ class UnconnectedMatchBoard extends Component {
           <input type="submit" value="POST" />
         </form>
         {this.props.matches.map(p => (
-          <Post key={p._id} contents={p} />
+          <Post key={p._id} contents={p} user={this.props.currentUser} />
         ))}
       </div>
     );
@@ -124,7 +124,8 @@ class UnconnectedMatchBoard extends Component {
 }
 let mapStateToProps = st => {
   return {
-    matches: st.matches
+    matches: st.matches,
+    currentUser: st.currentUser
   };
 };
 let MatchBoard = connect(mapStateToProps)(UnconnectedMatchBoard);
