@@ -8,7 +8,8 @@ const initialState = {
   searchQuery: "",
   players: [],
   tennisCourts: [],
-  matches: []
+  matches: [],
+  page: false
 };
 
 let reducer = (state, action) => {
@@ -23,6 +24,10 @@ let reducer = (state, action) => {
       return { ...state, button: action.toggle };
     case "login-success":
       return { ...state, loggedIn: true, currentUser: action.user };
+    case "first-page":
+      return { ...state, page: true };
+    default:
+      return state;
   }
 };
 

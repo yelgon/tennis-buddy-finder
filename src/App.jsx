@@ -3,10 +3,6 @@ import { connect } from "react-redux";
 import Home from "./Home.jsx";
 
 class UnconnectedApp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { page: false };
-  }
   componentDidMount() {
     this.AllPlayers();
     this.AllMatches();
@@ -35,10 +31,10 @@ class UnconnectedApp extends Component {
     this.props.dispatch({ type: "SET_MATCHES", match: body });
   };
   passingThePage = () => {
-    this.setState({ page: true });
+    this.props.dispatch({ type: "first-page" });
   };
   render = () => {
-    if (this.state.page) {
+    if (this.props.page) {
       return <Home />;
     }
     return (
@@ -48,6 +44,8 @@ class UnconnectedApp extends Component {
     );
   };
 }
-
-let App = connect()(UnconnectedApp);
+let mapStateToProps = st => {
+  return { page: st.page };
+};
+let App = connect(mapStateToProps)(UnconnectedApp);
 export default App;

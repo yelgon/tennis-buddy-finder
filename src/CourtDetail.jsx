@@ -10,9 +10,7 @@ class UnconnectedCourtDetail extends Component {
       )
     };
   }
-  componentDidMount() {
-    console.log(this.state.courtName.imagesPath);
-  }
+
   render() {
     return (
       <div style={{ textAlign: "center" }}>
@@ -22,8 +20,8 @@ class UnconnectedCourtDetail extends Component {
         <div>{this.state.courtName.courtPhone}</div>
         <div>{this.state.courtName.openHour}</div>
         <div>{this.state.courtName.address}</div>
-        {this.state.courtName.imagesPath.map((e, idx) => {
-          return <img src={e} key={idx} />;
+        {this.state.courtName.imagesPath.map((imagePath, idx) => {
+          return <img height="150px" src={`/uploads/${imagePath}`} key={idx} />;
         })}
       </div>
     );
