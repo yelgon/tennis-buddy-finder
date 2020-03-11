@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Cube from "react-3d-cube";
 
 class UnconnectedCourtDetail extends Component {
   constructor(props) {
@@ -14,15 +15,36 @@ class UnconnectedCourtDetail extends Component {
   render() {
     return (
       <div style={{ textAlign: "center" }}>
+        <div>
+          <div
+            style={{
+              width: 300,
+              height: 300,
+              marginLeft: "30%"
+            }}
+          >
+            <Cube size={500} index="front">
+              {this.state.courtName.imagesPath.map((imagePath, idx) => {
+                return (
+                  <div>
+                    <img
+                      height="300px"
+                      width="300px"
+                      src={`/uploads/${imagePath}`}
+                      key={idx}
+                    />
+                  </div>
+                );
+              })}
+            </Cube>
+          </div>
+        </div>
         <div>Court Detail</div>
         <div>{this.state.courtName.courtName}</div>
         <div>{this.state.courtName.courtType}</div>
         <div>{this.state.courtName.courtPhone}</div>
         <div>{this.state.courtName.openHour}</div>
         <div>{this.state.courtName.address}</div>
-        {this.state.courtName.imagesPath.map((imagePath, idx) => {
-          return <img height="150px" src={`/uploads/${imagePath}`} key={idx} />;
-        })}
       </div>
     );
   }

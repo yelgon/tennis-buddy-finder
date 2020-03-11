@@ -24,7 +24,7 @@ let reducer = (state, action) => {
       return { ...state, button: action.toggle };
     case "login-success":
       return { ...state, loggedIn: true, currentUser: action.user };
-    case "first-page":
+    case "SET-firstPage":
       return { ...state, page: true };
     default:
       return state;

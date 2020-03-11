@@ -31,7 +31,7 @@ class UnconnectedApp extends Component {
     this.props.dispatch({ type: "SET_MATCHES", match: body });
   };
   passingThePage = () => {
-    this.props.dispatch({ type: "first-page" });
+    this.props.dispatch({ type: "SET-firstPage" });
   };
   render = () => {
     if (this.props.page) {
