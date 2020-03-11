@@ -14,16 +14,16 @@ class UnconnectedCourtDetail extends Component {
 
   render() {
     return (
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center", paddingTop: "100px" }}>
         <div>
           <div
             style={{
               width: 300,
               height: 300,
-              marginLeft: "30%"
+              marginLeft: "35%"
             }}
           >
-            <Cube size={500} index="front">
+            <Cube size={400} index="front">
               {this.state.courtName.imagesPath.map((imagePath, idx) => {
                 return (
                   <div>
@@ -39,7 +39,7 @@ class UnconnectedCourtDetail extends Component {
             </Cube>
           </div>
         </div>
-        <div>Court Detail</div>
+        <div style={{ marginTop: "100px" }}>Court Detail</div>
         <div>{this.state.courtName.courtName}</div>
         <div>{this.state.courtName.courtType}</div>
         <div>{this.state.courtName.courtPhone}</div>
