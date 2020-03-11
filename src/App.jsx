@@ -7,7 +7,6 @@ class UnconnectedApp extends Component {
     this.AllPlayers();
     this.AllMatches();
     this.AllCourts();
-    this.props.dispatch({ type: "button", toggle: false });
   }
   AllPlayers = async () => {
     let response = await fetch("/all-players");

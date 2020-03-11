@@ -3,7 +3,7 @@ import { createStore } from "redux";
 const initialState = {
   loggedIn: false,
   signup: false,
-  button: undefined,
+  button: false,
   currentUser: "",
   searchQuery: "",
   players: [],
@@ -20,8 +20,6 @@ let reducer = (state, action) => {
       return { ...state, tennisCourts: action.court };
     case "SET_MATCHES":
       return { ...state, matches: action.match };
-    case "button":
-      return { ...state, button: action.toggle };
     case "login-success":
       return { ...state, loggedIn: true, currentUser: action.user };
     case "SET-firstPage":
