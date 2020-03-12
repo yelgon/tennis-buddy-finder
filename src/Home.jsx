@@ -6,11 +6,12 @@ import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
 import PlacesAuto from "./PlacesAuto.jsx";
 import LogoutButton from "./LogoutButton.jsx";
-import LevelGuide from "./LevelGuide.jsx";
+// import LevelGuide from "./LevelGuide.jsx";
 import { connect } from "react-redux";
 import PostCourt from "./PostCourt.jsx";
 import MatchBoard from "./MatchBoard.jsx";
 import CourtDetail from "./CourtDetail.jsx";
+import LevelCategory from "./NationalTennisRatingProgram.jsx";
 
 class UnconnectedHome extends Component {
   renderSimpleMap = () => {
@@ -29,7 +30,7 @@ class UnconnectedHome extends Component {
     return <section></section>;
   };
   renderLevelGuide = () => {
-    return <LevelGuide />;
+    return <LevelCategory />;
   };
   renderPostCourt = () => {
     return <PostCourt />;
