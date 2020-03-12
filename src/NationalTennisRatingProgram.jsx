@@ -16,16 +16,22 @@ function LevelCategory() {
     netPlay: "20",
     serve: "20"
   });
-  const [explanation, setExplanation] = useState(
-    "New Player: Has no or limited tennis experience and is still working primarily on getting the ball into play."
-  );
+  const [title, setTitle] = useState("New Player");
+  const [explanation, setExplanation] = useState([
+    "Has no experience",
+    "Or limited tennis experience",
+    "is stille primarily on getting the ball into play"
+  ]);
 
   const levelGuiding = event => {
     switch (event.target.value) {
       case "20":
-        setExplanation(
-          "New Player: Has no or limited tennis experience and is still working primarily on getting the ball into play."
-        );
+        setTitle("New Player");
+        setExplanation([
+          "Has no experience",
+          "Or limited tennis experience",
+          "Is still primarily on getting the ball into play"
+        ]);
         setLevel({
           groundStroke: "20",
           returnOfServe: "20",
@@ -34,9 +40,12 @@ function LevelCategory() {
         });
         break;
       case "30":
-        setExplanation(
-          "Beginner Player: Needs on-court experience. Has obvious stroke weaknesses but is familiar with basic positions for singles and doubles play."
-        );
+        setTitle("Beginner Player");
+        setExplanation([
+          "Needs on-court experience",
+          "Has obvious stroke weakness",
+          "Is familiar with basic positions"
+        ]);
         setLevel({
           groundStroke: "30",
           returnOfServe: "30",
@@ -45,9 +54,12 @@ function LevelCategory() {
         });
         break;
       case "40":
-        setExplanation(
-          "Beginner Player: Learning to judge where the ball is going although court coverage is weak. Can sustain a short rally of slow pace with other players of the same ability."
-        );
+        setTitle("Beginner Player");
+        setExplanation([
+          "Learning to judge where the ball is going althought coverage is weak",
+          "Can sustain a short rally of slow pace",
+          "can rally 6 balls in a row"
+        ]);
         setLevel({
           groundStroke: "40",
           returnOfServe: "40",
@@ -56,9 +68,12 @@ function LevelCategory() {
         });
         break;
       case "50":
-        setExplanation(
-          "Beginner-Intermediate Player: Fairly consistent when hitting medium-paced shots, but is not comfortable with all strokes and lacks execution when trying for directional control, depth or power. Needs work on depth and variety."
-        );
+        setTitle("Beginner-Intermediate Player");
+        setExplanation([
+          "Fairly consistent when hitting medium-paced shots",
+          "Lacks of execution when trying for directional control",
+          "Needs work on depth and variety"
+        ]);
         setLevel({
           groundStroke: "50",
           returnOfServe: "50",
@@ -67,9 +82,12 @@ function LevelCategory() {
         });
         break;
       case "60":
-        setExplanation(
-          "Intermediate Player: Has achieved improved stroke dependability with directional control on moderate shots, but still lacks depth and variety. Starting to exhibit more aggressive net play and has improved court coverage."
-        );
+        setTitle("Intermediate Player");
+        setExplanation([
+          "Has achieved improved stroke",
+          "Starting to exhibit more aggressive net play",
+          "Has improved court coverage"
+        ]);
         setLevel({
           groundStroke: "60",
           returnOfServe: "60",
@@ -78,9 +96,12 @@ function LevelCategory() {
         });
         break;
       case "70":
-        setExplanation(
-          "Intermediate-Advanced Player: Has dependable strokes, including directional control and depth on both forehand and backhand sides plus the ability to use lobs, overheads, approach shots and volleys with some success. May be starting to master the use of power and spins (though tends to over-hit difficult shots). Rallies may be lost due to impatience."
-        );
+        setTitle("Intermediate-Advanced Player");
+        setExplanation([
+          "Has dependable strokes with power",
+          "Use lobs, overheads, approach shots and volleys with some success",
+          "Rallies may be lost due to impatience"
+        ]);
         setLevel({
           groundStroke: "70",
           returnOfServe: "70",
@@ -89,9 +110,13 @@ function LevelCategory() {
         });
         break;
       case "80":
-        setExplanation(
-          "Advanced Player: Starting to master the use of power and spins; can handle pace, has sound footwork, can control depth of shots and is beginning to vary game plan according to opponents. Can hit first serves with power and accuracy and place the second serve. May have played varsity or college club tennis."
-        );
+        setTitle("Advanced Player");
+        setExplanation([
+          "Starting to master the use of power and spins",
+          "Can handle pace and sound footwork",
+          "Can hit first serves with power and accuracy and place the second serve",
+          "May have played varsity or college club tennis"
+        ]);
         setLevel({
           groundStroke: "80",
           returnOfServe: "80",
@@ -100,7 +125,12 @@ function LevelCategory() {
         });
         break;
       case "90":
-        setExplanation("Expert");
+        setTitle("Expert Player");
+        setExplanation([
+          "Able to maintain a consistent rally on 10 fast balls",
+          "Very steady strokes or has a dominant shot",
+          "Periodically succeeds when sttempting a quality shot"
+        ]);
         setLevel({
           groundStroke: "90",
           returnOfServe: "90",
@@ -109,7 +139,12 @@ function LevelCategory() {
         });
         break;
       default:
-        setExplanation("");
+        setTitle("New Player");
+        setExplanation([
+          "Learning to judge where the ball is going althought coverage is weak",
+          "Can sustain a short rally of slow pace",
+          "can rally 7 balls in a row"
+        ]);
         setLevel({
           groundStroke: "20",
           returnOfServe: "20",
@@ -143,7 +178,12 @@ function LevelCategory() {
         <option value="80">NTRP 4.5</option>
         <option value="90">NTRP 5.0</option>
       </select>
-      <div>{explanation}</div>
+      <div>{title}</div>
+      <ul>
+        {explanation.map((e, idx) => {
+          return <li key={idx}>{e}</li>;
+        })}
+      </ul>
       <Circles>
         <div style={circleContainerStyle}>
           <h2>Ground Stroke</h2>
