@@ -6,6 +6,8 @@ let cookieParser = require("cookie-parser");
 app.use(cookieParser());
 let reloadMagic = require("./reload-magic.js");
 let MongoClient = require("mongodb").MongoClient;
+let ObjectId = require("mongodb").ObjectId;
+
 reloadMagic(app);
 
 let dbo = undefined;
@@ -97,6 +99,7 @@ app.post("/new-match", upload.none(), async (req, res) => {
   let level = req.body.level;
   let courtName = req.body.courtName;
   let playType = req.body.playType;
+
   let dayOfTheWeek = req.body.dayOfTheWeek;
   let month = req.body.month;
   let day = req.body.day;
@@ -108,12 +111,31 @@ app.post("/new-match", upload.none(), async (req, res) => {
     courtName: courtName,
     playType: playType,
     dayOfTheWeek: dayOfTheWeek,
+    participants: [name],
     month: month,
     day: day,
     year: year,
     time: time
   });
   res.send(JSON.stringify({ success: true }));
+});
+app.post("/participate", upload.none(), async (req, res) => {
+  let id = req.body._id;
+  let newParticipant = req.body.participant;
+  try {
+    const player = await dbo
+      .collection("match-board")
+      .updateOne(
+        { _id: ObjectId(id) },
+        { $push: { participants: newParticipant } }
+      );
+    if (player) {
+      return res.send(JSON.stringify({ success: true }));
+    }
+  } catch (err) {
+    console.log("/new-court", err);
+    res.send(JSON.stringify({ success: false }));
+  }
 });
 
 app.post("/new-court", upload.array("images"), async (req, res) => {
