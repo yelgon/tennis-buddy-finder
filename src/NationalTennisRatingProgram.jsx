@@ -186,7 +186,7 @@ function LevelCategory() {
       </ul>
       <Circles>
         <div style={circleContainerStyle}>
-          <h2>Ground Stroke</h2>
+          <div>Ground Stroke</div>
           <div>(forehand and backhand)</div>
           <span>{parseInt(level.groundStroke)}%</span>
           <Circle
@@ -198,7 +198,7 @@ function LevelCategory() {
         </div>
 
         <div style={circleContainerStyle}>
-          <h2>Return of serve</h2>
+          <div>Return of serve</div>
           <span>{parseInt(level.returnOfServe)}%</span>
           <Circle
             percent={parseInt(level.returnOfServe)}
@@ -208,7 +208,7 @@ function LevelCategory() {
           />
         </div>
         <div style={circleContainerStyle}>
-          <h2>Net Play</h2>
+          <div>Net Play</div>
           <div>(volleys and overheads)</div>
           <span>{parseInt(level.netPlay)}%</span>
           <Circle
@@ -219,7 +219,7 @@ function LevelCategory() {
           />
         </div>
         <div style={circleContainerStyle}>
-          <h2>Serve</h2>
+          <div>Serve</div>
           <span>{parseInt(level.serve)}%</span>
           <Circle
             percent={parseInt(level.serve)}
