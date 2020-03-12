@@ -2,16 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class UnconnectedLogoutButton extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { checked: this.props.toggle };
-  }
-  componentDidMount() {
-    console.log(this.props.toggle);
-  }
   handleChange = event => {
-    this.setState({ checked: event.target.checked });
-    console.log(this.state.checked);
+    console.log(event.target.checked);
+    this.props.dispatch({ type: "SET-TOGGLE", button: event.target.checked });
+    console.log(this.props.toggle);
   };
 
   render() {
@@ -28,7 +22,7 @@ class UnconnectedLogoutButton extends Component {
   }
 }
 let mapStateToProps = st => {
-  return { toggle: st.button };
+  return { toggle: st.toggle };
 };
 let LogoutButton = connect(mapStateToProps)(UnconnectedLogoutButton);
 export default LogoutButton;

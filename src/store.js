@@ -3,7 +3,7 @@ import { createStore } from "redux";
 const initialState = {
   loggedIn: false,
   signup: false,
-  button: false,
+  toggle: false,
   currentUser: "",
   searchQuery: "",
   players: [],
@@ -24,6 +24,8 @@ let reducer = (state, action) => {
       return { ...state, loggedIn: true, currentUser: action.user };
     case "SET-firstPage":
       return { ...state, page: true };
+    case "SET-TOGGLE":
+      return { ...state, toggle: action.button };
     default:
       return state;
   }
