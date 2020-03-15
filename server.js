@@ -133,7 +133,21 @@ app.post("/participate", upload.none(), async (req, res) => {
       return res.send(JSON.stringify({ success: true }));
     }
   } catch (err) {
-    console.log("/new-court", err);
+    console.log("/participate", err);
+    res.send(JSON.stringify({ success: false }));
+  }
+});
+app.post("/delete-match", upload.none(), async (req, res) => {
+  let id = req.body._id;
+  try {
+    const match = await dbo
+      .collection("match-board")
+      .remove({ _id: ObjectId(id) });
+    if (match) {
+      return res.send(JSON.stringify({ success: true }));
+    }
+  } catch (err) {
+    console.log("/delete-match", err);
     res.send(JSON.stringify({ success: false }));
   }
 });

@@ -15,7 +15,16 @@ class Post extends Component {
     }
     this.setState({ buttonName: "Participate" });
   }
-  addNameParticipants = () => {
+  clickHandler = async () => {
+    if (this.state.buttonName === "Delete") {
+      let data = new FormData();
+      data.append("_id", this.props.contents._id);
+      fetch("/delete-match", { method: "POST", body: data });
+      alert(
+        `your match on ${this.props.contents.month} ${this.props.contents.day}, ${this.props.contents.time}h has been deleted`
+      );
+      return;
+    }
     this.setState({
       participate: this.state.participate.concat(this.props.user)
     });
@@ -43,9 +52,7 @@ class Post extends Component {
         <div>Day: {this.props.contents.day}</div>
         <div>Year: {this.props.contents.year}</div>
         <div>Time{this.props.contents.time}h</div>
-        <button onClick={this.addNameParticipants}>
-          {this.state.buttonName}
-        </button>
+        <button onClick={this.clickHandler}>{this.state.buttonName}</button>
       </div>
     );
   }
