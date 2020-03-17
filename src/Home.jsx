@@ -6,7 +6,6 @@ import Login from "./Login.jsx";
 import Signup from "./Signup.jsx";
 import PlacesAuto from "./PlacesAuto.jsx";
 import LogoutButton from "./LogoutButton.jsx";
-// import LevelGuide from "./LevelGuide.jsx";
 import { connect } from "react-redux";
 import PostCourt from "./PostCourt.jsx";
 import MatchBoard from "./MatchBoard.jsx";
@@ -26,9 +25,7 @@ class UnconnectedHome extends Component {
   renderPostPlayer = () => {
     return <PlacesAuto />;
   };
-  renderMain = () => {
-    return <section></section>;
-  };
+
   renderLevelGuide = () => {
     return <LevelCategory />;
   };

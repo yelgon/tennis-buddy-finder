@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 
 class UnconnectedLogoutButton extends Component {
   handleChange = event => {
-    console.log(event.target.checked);
     this.props.dispatch({ type: "SET-TOGGLE", button: event.target.checked });
-    console.log(this.props.toggle);
   };
 
   render() {

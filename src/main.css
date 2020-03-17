@@ -88,14 +88,7 @@ label #cancel {
 #check:checked ~ section {
   margin-left: 250px;
 }
-section {
-  background-image: url("/static/section3.jpg");
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-position: center;
-  height: 100vh;
-  transition: 0.5s;
-}
+
 /* Sidebar */
 
 /* logout buttton */
