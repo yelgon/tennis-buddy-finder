@@ -16,23 +16,32 @@ class UnconnectedHome extends Component {
   renderSimpleMap = () => {
     return <SimpleMap />;
   };
-  renderSignup = () => {
-    return <Signup />;
-  };
   renderLogin = () => {
     return <Login />;
   };
-  renderPostPlayer = () => {
+  renderPostPlayer = routerData => {
+    if (!this.props.currentUser) {
+      alert("Please log in first");
+      return routerData.history.push("/login");
+    }
     return <PlacesAuto />;
   };
 
   renderLevelGuide = () => {
     return <LevelCategory />;
   };
-  renderPostCourt = () => {
+  renderPostCourt = routerData => {
+    if (!this.props.currentUser) {
+      alert("Please log in first");
+      return routerData.history.push("/login");
+    }
     return <PostCourt />;
   };
-  renderMatchBoard = () => {
+  renderMatchBoard = routerData => {
+    if (!this.props.currentUser) {
+      alert("Please log in first");
+      return routerData.history.push("/login");
+    }
     return <MatchBoard />;
   };
   renderTennisCourt = routerData => {
@@ -48,7 +57,7 @@ class UnconnectedHome extends Component {
         <div>
           <Route exact={true} path="/" render={this.renderSimpleMap} />
           <Route exact={true} path="/login" render={this.renderLogin} />
-          <Route exact={true} path="/signup" render={this.renderSignup} />
+
           <Route
             exact={true}
             path="/matchBoard"
@@ -82,6 +91,7 @@ class UnconnectedHome extends Component {
 }
 let mapStateToProps = st => {
   return {
+    currentUser: st.currentUser
     // query: st.searchQuery,
     // snup: st.signup,
     // lgin: st.loggedIn,
