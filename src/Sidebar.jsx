@@ -28,14 +28,14 @@ class Sidebar extends Component {
                   <i className="fas fa-home"></i> HOME
                 </Link>
               </li>
-              {/* <li>
+              <li>
                 <Link
                   to="/login"
                   style={{ color: "#FFF", textDecoration: "none" }}
                 >
                   <i className="fas fa-highlighter"></i> LOGIN
                 </Link>
-              </li> */}
+              </li>
               <li>
                 <Link
                   to="/matchBoard"

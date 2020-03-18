@@ -11,13 +11,14 @@ import PostCourt from "./PostCourt.jsx";
 import MatchBoard from "./MatchBoard.jsx";
 import CourtDetail from "./CourtDetail.jsx";
 import LevelCategory from "./NationalTennisRatingProgram.jsx";
+import Reservation from "./Reservation.jsx";
 
 class UnconnectedHome extends Component {
   renderSimpleMap = () => {
     return <SimpleMap />;
   };
-  renderLogin = () => {
-    return <Login />;
+  renderLogin = routerData => {
+    return <Login history={routerData.history} />;
   };
   renderPostPlayer = routerData => {
     if (!this.props.currentUser) {
@@ -46,6 +47,13 @@ class UnconnectedHome extends Component {
   };
   renderTennisCourt = routerData => {
     return <CourtDetail courtName={routerData.match.params.court} />;
+  };
+  renderYourReservation = routerData => {
+    if (!this.props.currentUser) {
+      alert("Please log in first");
+      return routerData.history.push("/login");
+    }
+    return <Reservation />;
   };
   render = () => {
     return (
