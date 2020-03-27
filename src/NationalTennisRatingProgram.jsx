@@ -11,10 +11,10 @@ const Circles = styled.div`
 
 function LevelCategory() {
   const [level, setLevel] = useState({
-    groundStroke: "20",
-    returnOfServe: "20",
-    netPlay: "20",
-    serve: "20"
+    groundStroke: "10",
+    returnOfServe: "10",
+    netPlay: "10",
+    serve: "10"
   });
   const [title, setTitle] = useState("New Player");
   const [explanation, setExplanation] = useState([
@@ -25,12 +25,26 @@ function LevelCategory() {
 
   const levelGuiding = event => {
     switch (event.target.value) {
-      case "20":
+      case "10":
         setTitle("New Player");
         setExplanation([
           "Has no experience",
           "Or limited tennis experience",
           "Is still primarily on getting the ball into play"
+        ]);
+        setLevel({
+          groundStroke: "10",
+          returnOfServe: "10",
+          netPlay: "10",
+          serve: "10"
+        });
+        break;
+      case "20":
+        setTitle("Beginner Player");
+        setExplanation([
+          "Needs on-court experience",
+          "Has obvious stroke weakness",
+          "Is familiar with basic positions"
         ]);
         setLevel({
           groundStroke: "20",
@@ -42,27 +56,13 @@ function LevelCategory() {
       case "30":
         setTitle("Beginner Player");
         setExplanation([
-          "Needs on-court experience",
-          "Has obvious stroke weakness",
-          "Is familiar with basic positions"
-        ]);
-        setLevel({
-          groundStroke: "30",
-          returnOfServe: "30",
-          netPlay: "20",
-          serve: "20"
-        });
-        break;
-      case "40":
-        setTitle("Beginner Player");
-        setExplanation([
           "Learning to judge where the ball is going althought coverage is weak",
           "Can sustain a short rally of slow pace",
           "can rally 6 balls in a row"
         ]);
         setLevel({
-          groundStroke: "40",
-          returnOfServe: "40",
+          groundStroke: "30",
+          returnOfServe: "30",
           netPlay: "30",
           serve: "30"
         });
@@ -118,10 +118,10 @@ function LevelCategory() {
           "May have played varsity or college club tennis"
         ]);
         setLevel({
-          groundStroke: "80",
-          returnOfServe: "80",
-          netPlay: "70",
-          serve: "70"
+          groundStroke: "90",
+          returnOfServe: "90",
+          netPlay: "85",
+          serve: "85"
         });
         break;
       case "90":
@@ -132,10 +132,10 @@ function LevelCategory() {
           "Periodically succeeds when sttempting a quality shot"
         ]);
         setLevel({
-          groundStroke: "90",
-          returnOfServe: "90",
-          netPlay: "85",
-          serve: "85"
+          groundStroke: "100",
+          returnOfServe: "100",
+          netPlay: "95",
+          serve: "95"
         });
         break;
       default:
@@ -146,10 +146,10 @@ function LevelCategory() {
           "can rally 7 balls in a row"
         ]);
         setLevel({
-          groundStroke: "20",
-          returnOfServe: "20",
-          netPlay: "20",
-          serve: "20"
+          groundStroke: "10",
+          returnOfServe: "10",
+          netPlay: "10",
+          serve: "10"
         });
         break;
     }
@@ -168,10 +168,11 @@ function LevelCategory() {
   return (
     <Wrapper>
       <div>Tennis - Self-Rating Guide</div>
+      <h4>National Tennis Rating Program</h4>
       <select onChange={levelGuiding}>
-        <option value="20">NTRP 1.5</option>
-        <option value="30">NTRP 2.0</option>
-        <option value="40">NTRP 2.5</option>
+        <option value="10">NTRP 1.5</option>
+        <option value="20">NTRP 2.0</option>
+        <option value="30">NTRP 2.5</option>
         <option value="50">NTRP 3.0</option>
         <option value="60">NTRP 3.5</option>
         <option value="70">NTRP 4.0</option>

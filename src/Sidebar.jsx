@@ -68,14 +68,6 @@ class Sidebar extends Component {
                   <i className="fas fa-glasses"></i> LEVEL GUIDE
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/yourReservation"
-                  style={{ color: "#FFF", textDecoration: "none" }}
-                >
-                  <i className="fas fa-calendar-check"></i> YOUR MATCHES
-                </Link>
-              </li>
             </UnorderedList>
           </ul>
         </div>
