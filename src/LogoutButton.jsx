@@ -9,6 +9,7 @@ class UnconnectedLogoutButton extends Component {
   render() {
     return (
       <div className="center">
+        <h2 style={{ color: "#525564" }}>{this.props.user}</h2>
         <input
           type="checkbox"
           name=""
@@ -20,7 +21,7 @@ class UnconnectedLogoutButton extends Component {
   }
 }
 let mapStateToProps = st => {
-  return { toggle: st.toggle };
+  return { toggle: st.toggle, user: st.currentUser };
 };
 let LogoutButton = connect(mapStateToProps)(UnconnectedLogoutButton);
 export default LogoutButton;

@@ -3,7 +3,6 @@ import Sidebar from "./Sidebar.jsx";
 import { Route, BrowserRouter } from "react-router-dom";
 import SimpleMap from "./SimpleMap.jsx";
 import Login from "./Login.jsx";
-import Signup from "./Signup.jsx";
 import PlacesAuto from "./PlacesAuto.jsx";
 import LogoutButton from "./LogoutButton.jsx";
 import { connect } from "react-redux";

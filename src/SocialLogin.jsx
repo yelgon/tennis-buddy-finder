@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import FacebookLogin from "react-facebook-login";
 import GoogleLogin from "react-google-login";
 import styled from "styled-components";
+import { connect } from "react-redux";
 
 const FacebookWrapper = styled.div`
   padding: 5px;
@@ -19,7 +20,7 @@ const FacebookWrapper = styled.div`
   }
 `;
 
-class SocialLogin extends Component {
+class UnconnectedSocialLogin extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,6 +39,10 @@ class SocialLogin extends Component {
       facebookEamil: response.email,
       facebookPicture: response.picture.data.url
     });
+    this.props.dispatch({
+      type: "login-success",
+      user: this.state.facebookUser
+    });
   };
   responseGoogle = response => {
     console.log(response);
@@ -45,6 +50,10 @@ class SocialLogin extends Component {
       googleName: response.profileObj.name,
       googleEmail: response.profileObj.email,
       googlePicture: response.profileObj.imageUrl
+    });
+    this.props.dispatch({
+      type: "login-success",
+      user: this.state.googleName
     });
   };
   render() {
@@ -63,7 +72,7 @@ class SocialLogin extends Component {
         <div>
           <GoogleLogin
             clientId="219077069962-h5o4uoad3nvg7ou2d5947pvpqi97kbue.apps.googleusercontent.com"
-            buttonText="Login"
+            buttonText=""
             onSuccess={this.responseGoogle}
             onFailure={this.responseGoogle}
             cookiePolicy={"single_host_origin"}
@@ -84,5 +93,7 @@ class SocialLogin extends Component {
     );
   }
 }
+
+let SocialLogin = connect()(UnconnectedSocialLogin);
 
 export default SocialLogin;
