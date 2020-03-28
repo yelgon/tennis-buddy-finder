@@ -3,193 +3,9 @@ import GoogleMapReact from "google-map-react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import mapStyle from "./MapStyle.js";
 
-const mapStyle = [
-  {
-    elementType: "geometry",
-    stylers: [
-      {
-        color: "#212121"
-      }
-    ]
-  },
-  {
-    elementType: "labels.icon",
-    stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#757575"
-      }
-    ]
-  },
-  {
-    elementType: "labels.text.stroke",
-    stylers: [
-      {
-        color: "#212121"
-      }
-    ]
-  },
-  {
-    featureType: "administrative",
-    elementType: "geometry",
-    stylers: [
-      {
-        color: "#757575"
-      }
-    ]
-  },
-  {
-    featureType: "administrative.country",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#9e9e9e"
-      }
-    ]
-  },
-  {
-    featureType: "administrative.land_parcel",
-    stylers: [
-      {
-        visibility: "off"
-      }
-    ]
-  },
-  {
-    featureType: "administrative.locality",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#bdbdbd"
-      }
-    ]
-  },
-  {
-    featureType: "poi",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#757575"
-      }
-    ]
-  },
-  {
-    featureType: "poi.park",
-    elementType: "geometry",
-    stylers: [
-      {
-        color: "#181818"
-      }
-    ]
-  },
-  {
-    featureType: "poi.park",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#616161"
-      }
-    ]
-  },
-  {
-    featureType: "poi.park",
-    elementType: "labels.text.stroke",
-    stylers: [
-      {
-        color: "#1b1b1b"
-      }
-    ]
-  },
-  {
-    featureType: "road",
-    elementType: "geometry.fill",
-    stylers: [
-      {
-        color: "#2c2c2c"
-      }
-    ]
-  },
-  {
-    featureType: "road",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#8a8a8a"
-      }
-    ]
-  },
-  {
-    featureType: "road.arterial",
-    elementType: "geometry",
-    stylers: [
-      {
-        color: "#373737"
-      }
-    ]
-  },
-  {
-    featureType: "road.highway",
-    elementType: "geometry",
-    stylers: [
-      {
-        color: "#3c3c3c"
-      }
-    ]
-  },
-  {
-    featureType: "road.highway.controlled_access",
-    elementType: "geometry",
-    stylers: [
-      {
-        color: "#4e4e4e"
-      }
-    ]
-  },
-  {
-    featureType: "road.local",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#616161"
-      }
-    ]
-  },
-  {
-    featureType: "transit",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#757575"
-      }
-    ]
-  },
-  {
-    featureType: "water",
-    elementType: "geometry",
-    stylers: [
-      {
-        color: "#000000"
-      }
-    ]
-  },
-  {
-    featureType: "water",
-    elementType: "labels.text.fill",
-    stylers: [
-      {
-        color: "#3d3d3d"
-      }
-    ]
-  }
-];
+let mapStyleToggle = undefined;
 
 const MarkerPopup = styled.div`
   div {
@@ -284,6 +100,12 @@ class UnconnectedSimpleMap extends Component {
   };
 
   render() {
+    console.log(this.props.toggle);
+    if (this.props.toggle) {
+      mapStyleToggle = mapStyle;
+    } else {
+      mapStyleToggle = undefined;
+    }
     return (
       // Important! Always set the container height explicitly
       <div
@@ -309,7 +131,7 @@ class UnconnectedSimpleMap extends Component {
           bootstrapURLKeys={{ key: "AIzaSyBpxIhAuUfxs39WJO0sbSMJVU717st-z3o" }}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
-          options={{ styles: mapStyle }}
+          options={{ styles: mapStyleToggle }}
         >
           {this.props.stores.map((player, idx) => (
             <AnyReactComponent
@@ -343,7 +165,11 @@ class UnconnectedSimpleMap extends Component {
   }
 }
 let mapStateToProps = st => {
-  return { stores: st.players, tennisCourt: st.tennisCourts };
+  return {
+    stores: st.players,
+    tennisCourt: st.tennisCourts,
+    toggle: st.toggle
+  };
 };
 let SimpleMap = connect(mapStateToProps)(UnconnectedSimpleMap);
 
