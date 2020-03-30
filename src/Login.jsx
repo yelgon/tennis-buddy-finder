@@ -10,6 +10,7 @@ const Input = styled.div`
     border-left-style: hidden;
     border-bottom-style: groove;
     font-size: 17px;
+    background: none;
   }
 
   width: 100%;
