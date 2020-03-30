@@ -4,11 +4,14 @@ import GoogleLogin from "react-google-login";
 import styled from "styled-components";
 import { connect } from "react-redux";
 
+const Social = styled.div`
+  font-size: 20px;
+  font-style: italic;
+`;
 const FacebookWrapper = styled.div`
-  padding: 5px;
-  border: 1px solid red;
+  margin-top: 50px;
   display: flex;
-  justify-content: center;
+  justify-content: end;
   button {
     height: 60px;
     font-size: 1.5rem;
@@ -16,7 +19,8 @@ const FacebookWrapper = styled.div`
     width: fit-content;
   }
   div {
-    margin: 5px;
+    margin: 10px;
+    margin-left: 30px;
   }
 `;
 
@@ -59,6 +63,7 @@ class UnconnectedSocialLogin extends Component {
   render() {
     return (
       <FacebookWrapper>
+        <Social>or</Social>
         <div>
           {" "}
           <FacebookLogin
@@ -66,7 +71,7 @@ class UnconnectedSocialLogin extends Component {
             autoLoad={false}
             fields="name,email,picture"
             callback={this.responseFacebook}
-            textButton="f"
+            textButton="facebook"
           />
         </div>
         <div>
@@ -78,17 +83,6 @@ class UnconnectedSocialLogin extends Component {
             cookiePolicy={"single_host_origin"}
           />
         </div>
-        {/* <div>
-          {this.state.facebookEamil}
-          {this.state.facebookUser}
-          <img src={this.state.facebookPicture} />
-        </div>
-
-        <div>
-          {this.state.googleEmail}
-          {this.state.googleName}
-          <img height=" 50px" src={this.state.googlePicture} />
-        </div> */}
       </FacebookWrapper>
     );
   }

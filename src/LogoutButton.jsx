@@ -9,7 +9,7 @@ class UnconnectedLogoutButton extends Component {
   render() {
     return (
       <div className="center">
-        <h2 style={{ color: "#525564" }}>{this.props.user}</h2>
+        <h2 style={{ color: "#005792" }}>{this.props.user}</h2>
         <input
           type="checkbox"
           name=""
