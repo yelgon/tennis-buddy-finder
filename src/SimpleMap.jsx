@@ -50,7 +50,7 @@ const TennisCourt = ({ imgSource, name, phone, open, type }) => {
   };
   return (
     <CourtMarker onClick={handleClick}>
-      <img height="20px" src={imgSource} />
+      <img height="40px" src={imgSource} />
       <CourtMarkerPopup>
         <div>{name} </div>
         <div>{phone}</div>
@@ -151,7 +151,7 @@ class UnconnectedSimpleMap extends Component {
                 key={idx}
                 lat={parseFloat(court.lat)}
                 lng={parseFloat(court.lng)}
-                imgSource="/static/court6.jpg"
+                imgSource="/static/court.png"
                 name={court.courtName}
                 phone={court.courtPhone}
                 type={court.courtType}
