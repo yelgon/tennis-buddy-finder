@@ -1,15 +1,27 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Circle } from "rc-progress";
+import { useSelector } from "react-redux";
+
+const Explanation = styled.div`
+  justify-content: flex-start;
+  display: flex;
+  margin-left: 200px;
+`;
 
 const Wrapper = styled.div`
-  margin-left: 25%;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+  background-color: ${props => (props.themeToggle ? "#1c1e24" : "white")};
+  color: ${props => (props.themeToggle ? "white" : "#1c1e24")};
 `;
-const Circles = styled.div`
-  /* display: flex; */
-`;
+const Circles = styled.div``;
 
 function LevelCategory() {
+  const themeToggle = useSelector(state => state.toggle);
+  console.log(themeToggle);
   const [level, setLevel] = useState({
     groundStroke: "10",
     returnOfServe: "10",
@@ -114,8 +126,7 @@ function LevelCategory() {
         setExplanation([
           "Starting to master the use of power and spins",
           "Can handle pace and sound footwork",
-          "Can hit first serves with power and accuracy and place the second serve",
-          "May have played varsity or college club tennis"
+          "Can hit first serves with power and accuracy and place the second serve"
         ]);
         setLevel({
           groundStroke: "90",
@@ -155,40 +166,55 @@ function LevelCategory() {
     }
   };
   const circleContainerStyle = {
-    width: "100px",
+    width: "300px",
     height: "100px",
     display: "inline-block",
     textAlign: "center",
     marginBottom: "85px",
-    marginRight: "7px",
-    marginLeft: "7px"
+    marginRight: "15px",
+    marginLeft: "15px"
   };
   const colorMap = ["#ccff13", "#6fdf87", "#4ccdd1", "#2f5acf", "#df5f2d"];
   const color = colorMap[parseInt(Math.random() * 5, 10)];
+
   return (
-    <Wrapper>
-      <div>Tennis - Self-Rating Guide</div>
-      <h4>National Tennis Rating Program</h4>
-      <select onChange={levelGuiding}>
-        <option value="10">NTRP 1.5</option>
-        <option value="20">NTRP 2.0</option>
-        <option value="30">NTRP 2.5</option>
-        <option value="50">NTRP 3.0</option>
-        <option value="60">NTRP 3.5</option>
-        <option value="70">NTRP 4.0</option>
-        <option value="80">NTRP 4.5</option>
-        <option value="90">NTRP 5.0</option>
-      </select>
-      <div>{title}</div>
-      <ul>
-        {explanation.map((e, idx) => {
-          return <li key={idx}>{e}</li>;
-        })}
-      </ul>
+    <Wrapper themeToggle={themeToggle}>
+      <div style={{ fontSize: "20px", padding: "50px" }}>
+        {" "}
+        SELF-RATING GUIDE
+      </div>
+      <h1>National Tennis Rating Program</h1>
+      <Explanation>
+        <div style={{ marginRight: "50px" }}>
+          <select
+            onChange={levelGuiding}
+            style={{ fontSize: "50px", width: "100%" }}
+          >
+            <option value="10">NTRP 1.5</option>
+            <option value="20">NTRP 2.0</option>
+            <option value="30">NTRP 2.5</option>
+            <option value="50">NTRP 3.0</option>
+            <option value="60">NTRP 3.5</option>
+            <option value="70">NTRP 4.0</option>
+            <option value="80">NTRP 4.5</option>
+            <option value="90">NTRP 5.0</option>
+          </select>
+          <h3 style={{ textAlign: "left" }}>{title}</h3>
+        </div>
+        <div style={{ textAlign: "left", fontSize: "20px" }}>
+          <ul>
+            {explanation.map((e, idx) => {
+              return <li key={idx}>{e}</li>;
+            })}
+          </ul>
+        </div>
+      </Explanation>
       <Circles>
         <div style={circleContainerStyle}>
-          <div>Ground Stroke</div>
-          <div>(forehand and backhand)</div>
+          <h3>
+            Ground Stroke
+            <br /> (forehand and backhand)
+          </h3>
           <span>{parseInt(level.groundStroke)}%</span>
           <Circle
             percent={parseInt(level.groundStroke)}
@@ -199,7 +225,7 @@ function LevelCategory() {
         </div>
 
         <div style={circleContainerStyle}>
-          <div>Return of serve</div>
+          <h3>Return of serve</h3>
           <span>{parseInt(level.returnOfServe)}%</span>
           <Circle
             percent={parseInt(level.returnOfServe)}
@@ -209,8 +235,11 @@ function LevelCategory() {
           />
         </div>
         <div style={circleContainerStyle}>
-          <div>Net Play</div>
-          <div>(volleys and overheads)</div>
+          <h3>
+            Net Play
+            <br />
+            (volleys and overheads)
+          </h3>
           <span>{parseInt(level.netPlay)}%</span>
           <Circle
             percent={parseInt(level.netPlay)}
@@ -220,7 +249,7 @@ function LevelCategory() {
           />
         </div>
         <div style={circleContainerStyle}>
-          <div>Serve</div>
+          <h3>Serve</h3>
           <span>{parseInt(level.serve)}%</span>
           <Circle
             percent={parseInt(level.serve)}
