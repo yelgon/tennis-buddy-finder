@@ -32,11 +32,30 @@ const Input = styled.div`
   font-family: Arial, Helvetica, sans-serif;
 `;
 const Image = styled.div`
+  @media (max-width: 685px) {
+    display: none;
+  }
   img {
     object-fit: cover;
     height: fit-content;
   }
 `;
+
+const Main = styled.div`
+  display: flex;
+  background-color: #ffffff;
+  justify-content: center;
+  text-align: center;
+  width: 97%;
+  height: 100vh;
+  border-radius: 1.5em;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+  margin-left: 20px;
+  align-items: center;
+  background-color: ${props => (props.themeToggle ? "#1c1e24" : "white")};
+  color: ${props => (props.themeToggle ? "white" : "#1c1e24")};
+`;
+
 class UnconnectedLogin extends Component {
   constructor(props) {
     super(props);
@@ -89,8 +108,9 @@ class UnconnectedLogin extends Component {
   };
 
   render = () => {
+    let themeToggle = this.props.theme;
     return (
-      <div align="center" className="main">
+      <Main themeToggle={themeToggle}>
         <Image>
           <img src="/static/section3.jpg" />
         </Image>
@@ -141,9 +161,12 @@ class UnconnectedLogin extends Component {
             <SocialLogin />
           </form>
         </div>
-      </div>
+      </Main>
     );
   };
 }
-let Login = connect()(UnconnectedLogin);
+let mapStateToProps = st => {
+  return { theme: st.toggle };
+};
+let Login = connect(mapStateToProps)(UnconnectedLogin);
 export default Login;
