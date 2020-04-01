@@ -2,7 +2,57 @@ import React, { Component } from "react";
 import DateTimePicker from "react-datetime-picker";
 import Post from "./Post.jsx";
 import { connect } from "react-redux";
+import styled from "styled-components";
 
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: ${props => (props.themeToggle ? "#2d2d2d" : "white")};
+  color: ${props => (props.themeToggle ? "white" : "black")};
+`;
+
+const Wrapper = styled.div`
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  padding-top: 100px;
+  grid-gap: 1.2rem;
+`;
+
+const NewMatch = styled.div`
+  border: 2px solid;
+  padding: 15px;
+  font-size: 13px;
+  font-weight: bold;
+  width: 300px;
+  box-shadow: 5px 10px ${props => (props.themeToggle ? "#f1404b" : "#2b2b2b")};
+  border-radius: 15px;
+  .menu {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 5px;
+    justify-content: space-between;
+    input {
+      width: 200px;
+    }
+  }
+`;
+const NewMatchButton = styled.div`
+  text-align: center;
+  margin-top: 20px;
+
+  input {
+    height: 40px;
+    width: 120px;
+    border-radius: 20px;
+
+    :hover {
+      cursor: pointer;
+
+      background-color: ${props => (props.themeToggle ? "#f1404b" : "#385F71")};
+    }
+  }
+`;
 class UnconnectedMatchBoard extends Component {
   constructor(props) {
     super(props);
@@ -70,62 +120,80 @@ class UnconnectedMatchBoard extends Component {
   };
 
   render() {
+    let themeToggle = this.props.theme;
     return (
-      <div style={{ textAlign: "center" }}>
-        <form onSubmit={this.submitHandler}>
-          <div>
-            NAME :
-            <input
-              type="text"
-              value={this.state.name}
-              onChange={this.nameHandler}
-            />
-          </div>
+      <Container themeToggle={themeToggle}>
+        <Wrapper>
+          {this.props.matches.map(p => (
+            <Post key={p._id} contents={p} user={this.props.currentUser} />
+          ))}
+          <NewMatch themeToggle={themeToggle}>
+            <form onSubmit={this.submitHandler}>
+              <div className="menu">
+                <div>NAME</div>
+                <div>
+                  <input
+                    type="text"
+                    value={this.state.name}
+                    onChange={this.nameHandler}
+                  />
+                </div>
+              </div>
 
-          <div>
-            LEVEL :
-            <input
-              type="text"
-              value={this.state.level}
-              onChange={this.levelHandler}
-            />
-          </div>
-          <div>
-            COURT NAME:
-            <input
-              type="text"
-              value={this.state.courtName}
-              onChange={this.courtHandler}
-            />
-          </div>
-          <div>
-            PLAY TYPE :
-            <input
-              type="text"
-              value={this.state.playType}
-              onChange={this.typeHandler}
-            />
-          </div>
-          <div>
-            DATE:{" "}
-            <DateTimePicker
-              onChange={this.dateHandler}
-              value={this.state.date}
-            />
-          </div>
-          <input type="submit" value="POST" />
-        </form>
-        {this.props.matches.map(p => (
-          <Post key={p._id} contents={p} user={this.props.currentUser} />
-        ))}
-      </div>
+              <div className="menu">
+                <div>LEVEL</div>
+                <div>
+                  <input
+                    type="text"
+                    value={this.state.level}
+                    onChange={this.levelHandler}
+                  />
+                </div>
+              </div>
+              <div className="menu">
+                <div>COUR</div>
+                <div>
+                  <input
+                    type="text"
+                    value={this.state.courtName}
+                    onChange={this.courtHandler}
+                  />
+                </div>
+              </div>
+              <div className="menu">
+                <div>TYPE</div>
+                <div>
+                  <input
+                    type="text"
+                    value={this.state.playType}
+                    onChange={this.typeHandler}
+                  />
+                </div>
+              </div>
+              <div className="menu">
+                <div>DATE</div>
+                <div>
+                  <DateTimePicker
+                    onChange={this.dateHandler}
+                    value={this.state.date}
+                  />
+                </div>
+              </div>
+              <NewMatchButton themeToggle={themeToggle}>
+                <input type="submit" value="NEW MATCH" />
+              </NewMatchButton>
+            </form>
+          </NewMatch>
+        </Wrapper>
+      </Container>
     );
   }
 }
 let mapStateToProps = st => {
   return {
     matches: st.matches,
-    currentUser: st.currentUser
+    currentUser: st.currentUser,
+    theme: st.toggle
   };
 };
 let MatchBoard = connect(mapStateToProps)(UnconnectedMatchBoard);

@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Cube from "react-3d-cube";
+import styled from "styled-components";
+
+const CubeImage = styled.div`
+  img {
+    border: 1px solid black;
+  }
+`;
 
 class UnconnectedCourtDetail extends Component {
   constructor(props) {
@@ -26,14 +33,14 @@ class UnconnectedCourtDetail extends Component {
             <Cube size={400} index="front">
               {this.state.courtName.imagesPath.map((imagePath, idx) => {
                 return (
-                  <div>
+                  <CubeImage>
                     <img
                       height="300px"
                       width="300px"
                       src={`/uploads/${imagePath}`}
                       key={idx}
                     />
-                  </div>
+                  </CubeImage>
                 );
               })}
             </Cube>

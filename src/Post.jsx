@@ -1,6 +1,50 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+import { connect } from "react-redux";
 
-class Post extends Component {
+const Container = styled.div`
+  .item-d {
+    grid-area: footer;
+    margin-top: 5px;
+  }
+  font-weight: bold;
+  box-shadow: 5px 10px ${props => (props.themeToggle ? "#040000" : "#2b2b2b")};
+  padding: 15px;
+  font-size: 15px;
+  width: 300px;
+  border: 3px solid black;
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "menu item"
+    "menu item"
+    "menu item"
+    "menu item"
+    "menu item"
+    "menu item"
+    ". footer";
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  justify-items: start;
+  :hover {
+    background-color: ${props => (props.themeToggle ? "#032030" : "#5bd1d7")};
+    transform: scale(0.98, 0.98);
+  }
+  button {
+    height: 30px;
+    border-radius: 15px;
+    :hover {
+      transform: scale(1.2, 1.2);
+      background-color: ${props => (props.themeToggle ? "#FE9000" : "#ff6768")};
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+`;
+
+class UnconnectedPost extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,30 +53,12 @@ class Post extends Component {
     };
   }
   componentDidMount() {
-    this.isParticipantFull();
-    console.log(
-      this.props.user,
-      this.props.contents.name,
-      this.props.contents.participants
-    );
     if (this.props.user === this.props.contents.name) {
       return this.setState({ buttonName: "Delete" });
     }
     this.setState({ buttonName: "Participate" });
   }
-  isParticipantFull = () => {
-    if (
-      this.props.contents.playType === "double" &&
-      this.props.contents.participants.length >= 4
-    ) {
-      return this.setState({ buttonName: "FULL" });
-    } else if (
-      this.props.contents.playType === "single" &&
-      this.props.contents.participants.length >= 2
-    ) {
-      return this.setState({ buttonName: "FULL" });
-    }
-  };
+
   clickHandler = async () => {
     if (this.state.buttonName === "Delete") {
       let data = new FormData();
@@ -48,35 +74,49 @@ class Post extends Component {
     this.setState({
       participate: this.state.participate.concat(this.props.user)
     });
-    this.isParticipantFull();
-    console.log(this.props.contents._id);
+
     let data = new FormData();
     data.append("participant", this.props.user);
     data.append("_id", this.props.contents._id);
     fetch("/participate", { method: "POST", body: data });
+    alert(`You are joining ${this.props.contents.name}'s game`);
   };
   render() {
+    let themeToggle = this.props.theme;
     return (
-      <div style={{ textAlign: "center", border: "1px solid black" }}>
-        <h2>Organizer: {this.props.contents.name}</h2>
-        <div>Level: {this.props.contents.level}</div>
-        <div>Court Name:{this.props.contents.courtName}</div>
-        <div>Play Type: {this.props.contents.playType}</div>
+      <Container themeToggle={themeToggle}>
+        <div>Organizer</div>
+        <div>{this.props.contents.name}</div>
+        <div>Where</div>
+        <div>{this.props.contents.courtName}</div>
+        <div>When</div>
         <div>
-          Participants :{" "}
+          {this.props.contents.month} {this.props.contents.day}{" "}
+          {this.props.contents.dayOfTheWeek}, {this.props.contents.time}h
+        </div>
+        <div>Level</div>
+        <div>{this.props.contents.level}</div>
+        <div>Play Type</div>
+        <div>{this.props.contents.playType}</div>
+        <div>Participants</div>
+        <div>
           {this.state.participate.map((participant, idx) => {
-            return <p key={idx}>{participant}</p>;
+            return (
+              <div style={{ marginBottom: "3px" }} key={idx}>
+                {participant}{" "}
+              </div>
+            );
           })}
         </div>
-        <div>Day of the Week: {this.props.contents.dayOfTheWeek}</div>
-        <div>Month: {this.props.contents.month}</div>
-        <div>Day: {this.props.contents.day}</div>
-        <div>Year: {this.props.contents.year}</div>
-        <div>Time{this.props.contents.time}h</div>
-        <button onClick={this.clickHandler}>{this.state.buttonName}</button>
-      </div>
+        <div className="item-d">
+          <button onClick={this.clickHandler}>{this.state.buttonName}</button>
+        </div>
+      </Container>
     );
   }
 }
-
+let mapStateToProps = st => {
+  return { theme: st.toggle };
+};
+let Post = connect(mapStateToProps)(UnconnectedPost);
 export default Post;
