@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Home from "./Home.jsx";
+import MainPage from "./page/MainPage.jsx";
 
 class UnconnectedApp extends Component {
   componentDidMount() {
@@ -29,18 +30,12 @@ class UnconnectedApp extends Component {
     body = JSON.parse(body);
     this.props.dispatch({ type: "SET_MATCHES", match: body });
   };
-  passingThePage = () => {
-    this.props.dispatch({ type: "SET-firstPage" });
-  };
+
   render = () => {
     if (this.props.page) {
       return <Home />;
     }
-    return (
-      <div style={{ textAlign: "center" }}>
-        <button onClick={this.passingThePage}>TENNIS BUDDY FINDER</button>
-      </div>
-    );
+    return <MainPage />;
   };
 }
 let mapStateToProps = st => {

@@ -33,7 +33,7 @@ const NewMatch = styled.div`
     padding: 5px;
     justify-content: space-between;
     input {
-      width: 200px;
+      width: 195px;
     }
   }
 `;

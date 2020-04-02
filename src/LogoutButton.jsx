@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import styled from "styled-components";
+
+const CurrentUser = styled.h2`
+  color: ${props => (props.themeToggle ? "#0099cc" : "#17223b")};
+  margin-left: 5px;
+`;
 
 class UnconnectedLogoutButton extends Component {
   handleChange = event => {
@@ -7,11 +13,10 @@ class UnconnectedLogoutButton extends Component {
   };
 
   render() {
+    let themeToggle = this.props.theme;
     return (
       <div className="center">
-        <h2 style={{ color: "#0099CC", marginLeft: "10px" }}>
-          {this.props.user}
-        </h2>
+        <CurrentUser themeToggle={themeToggle}>{this.props.user}</CurrentUser>
         <input
           type="checkbox"
           name=""
@@ -23,7 +28,7 @@ class UnconnectedLogoutButton extends Component {
   }
 }
 let mapStateToProps = st => {
-  return { toggle: st.toggle, user: st.currentUser };
+  return { toggle: st.toggle, user: st.currentUser, theme: st.toggle };
 };
 let LogoutButton = connect(mapStateToProps)(UnconnectedLogoutButton);
 export default LogoutButton;
