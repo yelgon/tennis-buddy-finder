@@ -37,7 +37,7 @@ const Container = styled.div`
     border-radius: 15px;
     :hover {
       transform: scale(1.2, 1.2);
-      background-color: ${props => (props.themeToggle ? "#FE9000" : "#ff6768")};
+      background-color: ${props => (props.themeToggle ? "#2694ab" : "#08ffc8")};
       font-weight: bold;
       cursor: pointer;
     }

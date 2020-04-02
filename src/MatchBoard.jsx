@@ -4,18 +4,30 @@ import Post from "./Post.jsx";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-const Container = styled.div`
+const PageName = styled.h1`
+  position: absolute;
+  top: 5%;
+  text-align: center;
   width: 100%;
+  @media (max-width: 900px) {
+    display: none;
+  }
+`;
+const Container = styled.div`
+  max-width: 100%;
   height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
   background-color: ${props => (props.themeToggle ? "#2d2d2d" : "white")};
   color: ${props => (props.themeToggle ? "white" : "black")};
 `;
 
 const Wrapper = styled.div`
+  max-width: 97%;
+  margin-left: 25px;
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  padding-top: 100px;
+  padding-top: 10%;
   grid-gap: 1.2rem;
 `;
 
@@ -25,7 +37,7 @@ const NewMatch = styled.div`
   font-size: 13px;
   font-weight: bold;
   width: 300px;
-  box-shadow: 5px 10px ${props => (props.themeToggle ? "#f1404b" : "#2b2b2b")};
+  box-shadow: 5px 10px ${props => (props.themeToggle ? "#f1404b" : "#13334c")};
   border-radius: 15px;
   .menu {
     display: grid;
@@ -45,11 +57,9 @@ const NewMatchButton = styled.div`
     height: 40px;
     width: 120px;
     border-radius: 20px;
-
     :hover {
       cursor: pointer;
-
-      background-color: ${props => (props.themeToggle ? "#f1404b" : "#385F71")};
+      background-color: ${props => (props.themeToggle ? "#f1404b" : "#263859")};
     }
   }
 `;
@@ -123,6 +133,7 @@ class UnconnectedMatchBoard extends Component {
     let themeToggle = this.props.theme;
     return (
       <Container themeToggle={themeToggle}>
+        <PageName>Match Board</PageName>
         <Wrapper>
           {this.props.matches.map(p => (
             <Post key={p._id} contents={p} user={this.props.currentUser} />
@@ -151,7 +162,7 @@ class UnconnectedMatchBoard extends Component {
                 </div>
               </div>
               <div className="menu">
-                <div>COUR</div>
+                <div>WHERE</div>
                 <div>
                   <input
                     type="text"

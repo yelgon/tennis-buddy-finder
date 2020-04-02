@@ -14,9 +14,9 @@ const Container = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   background-image: ${props =>
     props.themeToggle
-      ? `url("static/tennisBall3.png")`
-      : `url("static/tennisBall2.png")`};
-  color: ${props => (props.themeToggle ? "#FD7013" : "black")};
+      ? `url("static/mainpage3.png")`
+      : `url("static/mainpage2.png")`};
+  color: ${props => (props.themeToggle ? "#f07810" : "black")};
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
