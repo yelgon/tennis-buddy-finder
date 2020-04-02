@@ -120,7 +120,6 @@ function PostCourt() {
     data.append("address", address);
     data.append("lat", coordinates.lat);
     data.append("lng", coordinates.lng);
-
     fetch("/new-court", { method: "POST", body: data });
     alert("Court uploaded");
     setCourtName("");
