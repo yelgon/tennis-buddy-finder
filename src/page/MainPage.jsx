@@ -32,6 +32,7 @@ const Center = styled.div`
     animation: animate 1.5s linear infinite;
     :hover {
       cursor: pointer;
+      background-color: #588133;
     }
   }
   .ball:before {
