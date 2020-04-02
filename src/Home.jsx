@@ -19,10 +19,10 @@ class UnconnectedHome extends Component {
     return <Login history={routerData.history} />;
   };
   renderPostPlayer = routerData => {
-    if (!this.props.currentUser) {
-      alert("Please log in first");
-      return routerData.history.push("/login");
-    }
+    // if (!this.props.currentUser) {
+    //   alert("Please log in first");
+    //   return routerData.history.push("/login");
+    // }
     return <PlacesAuto />;
   };
 
@@ -30,17 +30,17 @@ class UnconnectedHome extends Component {
     return <LevelCategory />;
   };
   renderPostCourt = routerData => {
-    if (!this.props.currentUser) {
-      alert("Please log in first");
-      return routerData.history.push("/login");
-    }
+    // if (!this.props.currentUser) {
+    //   alert("Please log in first");
+    //   return routerData.history.push("/login");
+    // }
     return <PostCourt />;
   };
   renderMatchBoard = routerData => {
-    if (!this.props.currentUser) {
-      alert("Please log in first");
-      return routerData.history.push("/login");
-    }
+    // if (!this.props.currentUser) {
+    //   alert("Please log in first");
+    //   return routerData.history.push("/login");
+    // }
     return <MatchBoard />;
   };
   renderTennisCourt = routerData => {

@@ -26,6 +26,8 @@ let reducer = (state, action) => {
       return { ...state, page: true };
     case "SET-TOGGLE":
       return { ...state, toggle: action.button };
+    case "SET-LOGOUT":
+      return { ...state, page: false, currentUser: "" };
     default:
       return state;
   }

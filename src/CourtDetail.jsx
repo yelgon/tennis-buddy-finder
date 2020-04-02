@@ -3,11 +3,7 @@ import { connect } from "react-redux";
 import Cube from "react-3d-cube";
 import styled from "styled-components";
 
-const CubeImage = styled.div`
-  img {
-    border: 1px solid black;
-  }
-`;
+const CubeImage = styled.div``;
 
 class UnconnectedCourtDetail extends Component {
   constructor(props) {
