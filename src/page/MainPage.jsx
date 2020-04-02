@@ -3,6 +3,13 @@ import { connect } from "react-redux";
 import styled from "styled-components";
 
 const Center = styled.div`
+  img {
+    transform: translate(-50%, 100%);
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    border-radius: 2em;
+  }
   margin: 0;
   padding: 0;
   width: 100%;
@@ -96,9 +103,7 @@ class UnconnectedMainPage extends Component {
           <div className="ball" onClick={this.passingThePage}></div>
           <div className="shadow"></div>
         </div>
-        {/* <div>
-          <button onClick={this.passingThePage}>TENNIS BUDDY FINDER</button>
-        </div> */}
+        <img src="/static/logo.png" />
       </Center>
     );
   }
