@@ -2,9 +2,21 @@ import React, { useState } from "react";
 import GoogleMapReact from "google-map-react";
 import PlacesAutocomplete, {
   geocodeByAddress,
-  getLatLng
+  getLatLng,
 } from "react-places-autocomplete";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import mapSilver from "./mapSilver.js";
+
+let mapStyleToggle = undefined;
+
+const Box = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: ${(props) => (props.themeToggle ? "#1c1e24" : "white")};
+  color: ${(props) => (props.themeToggle ? "white" : "#1c1e24")};
+`;
+
 const Wrapper = styled.div`
   display: flex;
   position: relative;
@@ -13,19 +25,24 @@ const Wrapper = styled.div`
 const Button = styled.div`
   position: absolute;
   left: 50%;
-  bottom: 25%;
+  bottom: 5%;
   transform: translate(-50%, -50%);
 `;
 
 function PlacesAuto() {
+  const themeToggle = useSelector((state) => state.toggle);
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState({ lat: null, lng: null });
   const [playerName, setPlayerName] = useState("");
   const [playerEmail, setPlayerEmail] = useState("");
   const [playerPhone, setPlayerPhone] = useState("");
   const [playerLevel, setPlayerLevel] = useState("");
-
-  const handleSelect = async value => {
+  if (themeToggle) {
+    mapStyleToggle = mapSilver;
+  } else {
+    mapStyleToggle = undefined;
+  }
+  const handleSelect = async (value) => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
     console.log(latLng); //latLng = {lat:45.520, lng:-73.661} (one object)
@@ -53,7 +70,7 @@ function PlacesAuto() {
   };
   const zoom = 10;
   return (
-    <div style={{}}>
+    <Box themeToggle={themeToggle}>
       <PlacesAutocomplete
         value={address}
         onChange={setAddress}
@@ -63,9 +80,35 @@ function PlacesAuto() {
           <Wrapper>
             <div
               style={{
+                height: "65vh",
+                width: "60%",
+                marginTop: "10%",
+                marginLeft: "5%",
+              }}
+            >
+              <GoogleMapReact
+                bootstrapURLKeys={{
+                  key: "AIzaSyBpxIhAuUfxs39WJO0sbSMJVU717st-z3o",
+                }}
+                defaultCenter={{
+                  lat: 45.54017,
+                  lng: -73.6873,
+                }}
+                defaultZoom={zoom}
+                options={{ styles: mapStyleToggle }}
+              >
+                <AnyReactComponent
+                  lat={coordinates.lat}
+                  lng={coordinates.lng}
+                  imgSource="./static/tennis.png"
+                />
+              </GoogleMapReact>
+            </div>
+            <div
+              style={{
                 marginLeft: "5%",
                 marginRight: "10px",
-                marginTop: "10%"
+                marginTop: "10%",
               }}
             >
               <h2>Post as a player</h2>
@@ -79,7 +122,7 @@ function PlacesAuto() {
                 <input
                   type="text"
                   value={playerName}
-                  onChange={e => setPlayerName(e.target.value)}
+                  onChange={(e) => setPlayerName(e.target.value)}
                 />
               </div>
               <div>
@@ -88,7 +131,7 @@ function PlacesAuto() {
                 <input
                   type="text"
                   value={playerEmail}
-                  onChange={e => setPlayerEmail(e.target.value)}
+                  onChange={(e) => setPlayerEmail(e.target.value)}
                 />
               </div>
               <div>
@@ -97,7 +140,7 @@ function PlacesAuto() {
                 <input
                   type="text"
                   value={playerPhone}
-                  onChange={e => setPlayerPhone(e.target.value)}
+                  onChange={(e) => setPlayerPhone(e.target.value)}
                 />
               </div>
               <div>
@@ -106,7 +149,7 @@ function PlacesAuto() {
                 <input
                   type="text"
                   value={playerLevel}
-                  onChange={e => setPlayerLevel(e.target.value)}
+                  onChange={(e) => setPlayerLevel(e.target.value)}
                 />
               </div>
               <div>Address: {address}</div>
@@ -118,9 +161,9 @@ function PlacesAuto() {
               <div>
                 {loading ? <div>...loading</div> : null}
 
-                {suggestions.map(suggestion => {
+                {suggestions.map((suggestion) => {
                   const style = {
-                    backgroundColor: suggestion.active ? "#F9CE00" : "#fff"
+                    backgroundColor: suggestion.active ? "#F9CE00" : "#fff",
                   };
 
                   return (
@@ -131,35 +174,10 @@ function PlacesAuto() {
                 })}
               </div>
             </div>
-
-            <div
-              style={{
-                height: "50vh",
-                width: "60%",
-                marginTop: "10%"
-              }}
-            >
-              <GoogleMapReact
-                bootstrapURLKeys={{
-                  key: "AIzaSyBpxIhAuUfxs39WJO0sbSMJVU717st-z3o"
-                }}
-                defaultCenter={{
-                  lat: 45.54017,
-                  lng: -73.6873
-                }}
-                defaultZoom={zoom}
-              >
-                <AnyReactComponent
-                  lat={coordinates.lat}
-                  lng={coordinates.lng}
-                  imgSource="./static/tennis.png"
-                />
-              </GoogleMapReact>
-            </div>
           </Wrapper>
         )}
       </PlacesAutocomplete>
-    </div>
+    </Box>
   );
 }
 

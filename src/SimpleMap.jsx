@@ -95,13 +95,12 @@ class UnconnectedSimpleMap extends Component {
   static defaultProps = {
     center: {
       lat: 45.5017,
-      lng: -73.5673
+      lng: -73.5673,
     },
-    zoom: 12
+    zoom: 12,
   };
 
   render() {
-    console.log(this.props.toggle);
     if (this.props.toggle) {
       mapStyleToggle = mapStyle;
     } else {
@@ -113,7 +112,7 @@ class UnconnectedSimpleMap extends Component {
         style={{
           height: "100vh",
           width: "100%",
-          textAlign: "center"
+          textAlign: "center",
         }}
       >
         <input
@@ -125,7 +124,7 @@ class UnconnectedSimpleMap extends Component {
             padding: "3px",
             width: "40%",
             height: "20px",
-            margin: "10px"
+            margin: "10px",
           }}
         />
         <GoogleMapReact
@@ -165,11 +164,11 @@ class UnconnectedSimpleMap extends Component {
     );
   }
 }
-let mapStateToProps = st => {
+let mapStateToProps = (st) => {
   return {
     stores: st.players,
     tennisCourt: st.tennisCourts,
-    toggle: st.toggle
+    toggle: st.toggle,
   };
 };
 let SimpleMap = connect(mapStateToProps)(UnconnectedSimpleMap);
