@@ -14,8 +14,8 @@ const Container = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   background-image: ${props =>
     props.themeToggle
-      ? `url("static/mainpage3.png")`
-      : `url("static/mainpage2.png")`};
+      ? `url("static/tennisBall3.png")`
+      : `url("static/tennisBall2.png")`};
   color: ${props => (props.themeToggle ? "#f07810" : "black")};
   background-repeat: no-repeat;
   background-position: center;
@@ -51,7 +51,7 @@ const ItemMenu = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: space-between;
-  margin: 10px;
+  margin: 5px;
   font-size: 20px;
   max-width: 420px;
   margin-top: 30px;
