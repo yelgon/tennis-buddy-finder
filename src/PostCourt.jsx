@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
-  getLatLng
+  getLatLng,
 } from "react-places-autocomplete";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
@@ -12,11 +12,11 @@ const Container = styled.div`
   position: relative;
   display: block;
   font-family: Arial, Helvetica, sans-serif;
-  background-image: ${props =>
+  background-image: ${(props) =>
     props.themeToggle
       ? `url("static/tennisBall3.png")`
       : `url("static/tennisBall2.png")`};
-  color: ${props => (props.themeToggle ? "#f07810" : "black")};
+  color: ${(props) => (props.themeToggle ? "#f07810" : "black")};
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -43,7 +43,8 @@ const Button = styled.div`
     font-style: bold;
     :hover {
       cursor: pointer;
-      background-color: ${props => (props.themeToggle ? "#FD7013" : "#393E46")};
+      background-color: ${(props) =>
+        props.themeToggle ? "#FD7013" : "#393E46"};
     }
   }
 `;
@@ -77,7 +78,7 @@ const ImageUploadPreview = styled.div`
   margin-left: 30px;
 `;
 function PostCourt() {
-  const themeToggle = useSelector(state => state.toggle);
+  const themeToggle = useSelector((state) => state.toggle);
   const [address, setAddress] = useState("");
   const [coordinates, setCoordinates] = useState({ lat: null, lng: null });
   const [courtName, setCourtName] = useState("");
@@ -87,7 +88,7 @@ function PostCourt() {
   const [images, setImages] = useState("");
   const [previewImg, setPreviewImg] = useState([]); //URL.createObjectURL()
 
-  const handleSelect = async value => {
+  const handleSelect = async (value) => {
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
     console.log(latLng); //latLng = {lat:45.520, lng:-73.661} (one object)
@@ -95,13 +96,13 @@ function PostCourt() {
     setAddress(value);
     setCoordinates(latLng);
   };
-  const imagePreview = files => {
-    const urlArray = Array.from(files).map(file => {
+  const imagePreview = (files) => {
+    const urlArray = Array.from(files).map((file) => {
       return URL.createObjectURL(file);
     });
     setPreviewImg(urlArray);
   };
-  const imageHandler = event => {
+  const imageHandler = (event) => {
     setImages(event.target.files);
     imagePreview(event.target.files);
     console.log(images);
@@ -110,7 +111,7 @@ function PostCourt() {
   const setPostCourt = () => {
     console.log(courtName, courtType, courtPhone, openHour);
     const data = new FormData();
-    Array.from(images).forEach(img => {
+    Array.from(images).forEach((img) => {
       data.append("images", img);
     });
     data.append("courtName", courtName);
@@ -148,7 +149,7 @@ function PostCourt() {
                   <input
                     type="text"
                     value={courtName}
-                    onChange={e => setCourtName(e.target.value)}
+                    onChange={(e) => setCourtName(e.target.value)}
                   />
                 </div>
               </ItemMenu>
@@ -158,7 +159,7 @@ function PostCourt() {
                   <input
                     type="text"
                     value={courtType}
-                    onChange={e => setCourtType(e.target.value)}
+                    onChange={(e) => setCourtType(e.target.value)}
                   />
                 </div>
               </ItemMenu>
@@ -168,7 +169,7 @@ function PostCourt() {
                   <input
                     type="text"
                     value={courtPhone}
-                    onChange={e => setCourtPhone(e.target.value)}
+                    onChange={(e) => setCourtPhone(e.target.value)}
                   />
                 </div>
               </ItemMenu>
@@ -178,22 +179,27 @@ function PostCourt() {
                   <input
                     type="text"
                     value={openHour}
-                    onChange={e => setOpenHour(e.target.value)}
+                    onChange={(e) => setOpenHour(e.target.value)}
                   />
                 </div>
               </ItemMenu>
               <ItemMenu>Address </ItemMenu>
-              <div style={{ padding: "20px" }}> {address}</div>
+              <div style={{ padding: "5px", maxWidth: "400px" }}>
+                {" "}
+                {address}
+              </div>
 
               <input
-                style={{ width: "400px", padding: "10px", margin: "10px" }}
+                style={{ width: "400px", padding: "5px", marginBottom: "5px" }}
                 {...getInputProps({ placeholder: "Type address" })}
               />
               <div>
                 {loading ? <div>...loading</div> : null}
-                {suggestions.map(suggestion => {
+                {suggestions.map((suggestion) => {
                   const style = {
-                    backgroundColor: suggestion.active ? "#F9CE00" : "#fff"
+                    backgroundColor: suggestion.active ? "#F9CE00" : "#fff",
+                    maxWidth: "400px",
+                    padding: "5px",
                   };
 
                   return (

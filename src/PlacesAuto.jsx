@@ -8,6 +8,27 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 import mapSilver from "./mapSilver.js";
 
+const Address = styled.div`
+  max-width: 300px;
+  margin: 5px;
+`;
+const InputMenu = styled.div`
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+    "menu input"
+    "menu input"
+    "menu input"
+    "menu input"
+    "menu ."
+    "menu .";
+  div {
+    margin: 5px;
+  }
+  input {
+    width: 100%;
+  }
+`;
 let mapStyleToggle = undefined;
 
 const Box = styled.div`
@@ -15,6 +36,7 @@ const Box = styled.div`
   height: 100vh;
   background-color: ${(props) => (props.themeToggle ? "#1c1e24" : "white")};
   color: ${(props) => (props.themeToggle ? "white" : "#1c1e24")};
+  font-size: 17px;
 `;
 
 const Wrapper = styled.div`
@@ -115,64 +137,75 @@ function PlacesAuto() {
               <Button>
                 <button onClick={setPostPlayer}>POST</button>
               </Button>
+              <InputMenu>
+                <div>Name</div>
+                <div>
+                  <input
+                    type="text"
+                    value={playerName}
+                    onChange={(e) => setPlayerName(e.target.value)}
+                  />
+                </div>
+                <div> Email</div>
+                <div>
+                  <input
+                    type="text"
+                    value={playerEmail}
+                    onChange={(e) => setPlayerEmail(e.target.value)}
+                  />
+                </div>
 
-              <div>
-                {" "}
-                Name
-                <input
-                  type="text"
-                  value={playerName}
-                  onChange={(e) => setPlayerName(e.target.value)}
-                />
-              </div>
-              <div>
-                {" "}
-                Email
-                <input
-                  type="text"
-                  value={playerEmail}
-                  onChange={(e) => setPlayerEmail(e.target.value)}
-                />
-              </div>
-              <div>
-                {" "}
-                Phone
-                <input
-                  type="text"
-                  value={playerPhone}
-                  onChange={(e) => setPlayerPhone(e.target.value)}
-                />
-              </div>
-              <div>
-                {" "}
-                Level
-                <input
-                  type="text"
-                  value={playerLevel}
-                  onChange={(e) => setPlayerLevel(e.target.value)}
-                />
-              </div>
-              <div>Address: {address}</div>
+                <div>Phone</div>
+                <div>
+                  <input
+                    type="text"
+                    value={playerPhone}
+                    onChange={(e) => setPlayerPhone(e.target.value)}
+                  />
+                </div>
+                <div>Level</div>
+                <div>
+                  <input
+                    type="text"
+                    value={playerLevel}
+                    onChange={(e) => setPlayerLevel(e.target.value)}
+                  />
+                </div>
+              </InputMenu>
+              <Address>
+                <div>Address</div>
+                <div>{address}</div>
 
-              <input
-                style={{ width: "300px" }}
-                {...getInputProps({ placeholder: "Type address" })}
-              />
-              <div>
-                {loading ? <div>...loading</div> : null}
+                <div>
+                  <input
+                    style={{
+                      width: "300px",
+                      marginTop: "10px",
+                      marginBottom: "10px",
+                    }}
+                    {...getInputProps({ placeholder: "Type address" })}
+                  />
+                </div>
 
-                {suggestions.map((suggestion) => {
-                  const style = {
-                    backgroundColor: suggestion.active ? "#F9CE00" : "#fff",
-                  };
+                <div>
+                  {loading ? <div>...loading</div> : null}
 
-                  return (
-                    <div {...getSuggestionItemProps(suggestion, { style })}>
-                      {suggestion.description}
-                    </div>
-                  );
-                })}
-              </div>
+                  {suggestions.map((suggestion) => {
+                    const style = {
+                      backgroundColor: suggestion.active ? "#F9CE00" : "#fff",
+                      color: "black",
+                      maxWidth: "300px",
+                      padding: "5px",
+                    };
+
+                    return (
+                      <div {...getSuggestionItemProps(suggestion, { style })}>
+                        {suggestion.description}
+                      </div>
+                    );
+                  })}
+                </div>
+              </Address>
             </div>
           </Wrapper>
         )}
