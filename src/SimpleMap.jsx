@@ -28,7 +28,7 @@ const CourtMarkerPopup = styled.div`
   }
   min-width: 75px;
   opacity: 0;
-  background: #ff82a9;
+  background: #f6d04d;
   width: fit-content;
   border: 1px solid black;
   padding: 3px;

@@ -5,8 +5,8 @@ import styled from "styled-components";
 const Box = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: ${props => (props.themeToggle ? "#1c1e24" : "white")};
-  color: ${props => (props.themeToggle ? "white" : "#1c1e24")};
+  background-color: ${(props) => (props.themeToggle ? "#1c1e24" : "white")};
+  color: ${(props) => (props.themeToggle ? "white" : "#1c1e24")};
 `;
 
 const Wrapper = styled.div`
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  margin-left: 30px;
+  margin-left: 10%;
 `;
 
 class UnconnectedCourtDetail extends Component {
@@ -33,8 +33,8 @@ class UnconnectedCourtDetail extends Component {
     super(props);
     this.state = {
       courtName: this.props.court.find(
-        e => e.courtName === this.props.courtName
-      )
+        (e) => e.courtName === this.props.courtName
+      ),
     };
   }
 
@@ -47,7 +47,7 @@ class UnconnectedCourtDetail extends Component {
             style={{
               width: 300,
               height: 500,
-              marginLeft: "20%"
+              marginLeft: "15%",
             }}
           >
             <Cube size={500} index="front">
@@ -62,17 +62,19 @@ class UnconnectedCourtDetail extends Component {
             <h4>{this.state.courtName.courtType} court</h4>
             <h4>{this.state.courtName.courtPhone}</h4>
             <h4>Open Hour( {this.state.courtName.openHour} )</h4>
-            <h3>{this.state.courtName.address}</h3>
+            <h3 style={{ maxWidth: "500px" }}>
+              {this.state.courtName.address}
+            </h3>
           </Container>
         </Wrapper>
       </Box>
     );
   }
 }
-let mapStateToProps = st => {
+let mapStateToProps = (st) => {
   return {
     court: st.tennisCourts,
-    theme: st.toggle
+    theme: st.toggle,
   };
 };
 let CourtDetail = connect(mapStateToProps)(UnconnectedCourtDetail);

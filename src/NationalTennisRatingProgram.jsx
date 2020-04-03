@@ -7,6 +7,13 @@ const Explanation = styled.div`
   justify-content: flex-start;
   display: flex;
   margin-left: 200px;
+
+  div {
+    padding: 20px;
+  }
+  li {
+    padding: 10px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -14,41 +21,41 @@ const Wrapper = styled.div`
   text-align: center;
   width: 100%;
   height: 100vh;
-  background-color: ${props => (props.themeToggle ? "#1c1e24" : "white")};
-  color: ${props => (props.themeToggle ? "white" : "#1c1e24")};
+  background-color: ${(props) => (props.themeToggle ? "#1c1e24" : "white")};
+  color: ${(props) => (props.themeToggle ? "white" : "#1c1e24")};
 `;
 const Circles = styled.div``;
 
 function LevelCategory() {
-  const themeToggle = useSelector(state => state.toggle);
+  const themeToggle = useSelector((state) => state.toggle);
   console.log(themeToggle);
   const [level, setLevel] = useState({
     groundStroke: "10",
     returnOfServe: "10",
     netPlay: "10",
-    serve: "10"
+    serve: "10",
   });
   const [title, setTitle] = useState("New Player");
   const [explanation, setExplanation] = useState([
     "Has no experience",
     "Or limited tennis experience",
-    "is stille primarily on getting the ball into play"
+    "is stille primarily on getting the ball into play",
   ]);
 
-  const levelGuiding = event => {
+  const levelGuiding = (event) => {
     switch (event.target.value) {
       case "10":
         setTitle("New Player");
         setExplanation([
           "Has no experience",
           "Or limited tennis experience",
-          "Is still primarily on getting the ball into play"
+          "Is still primarily on getting the ball into play",
         ]);
         setLevel({
           groundStroke: "10",
           returnOfServe: "10",
           netPlay: "10",
-          serve: "10"
+          serve: "10",
         });
         break;
       case "20":
@@ -56,13 +63,13 @@ function LevelCategory() {
         setExplanation([
           "Needs on-court experience",
           "Has obvious stroke weakness",
-          "Is familiar with basic positions"
+          "Is familiar with basic positions",
         ]);
         setLevel({
           groundStroke: "20",
           returnOfServe: "20",
           netPlay: "20",
-          serve: "20"
+          serve: "20",
         });
         break;
       case "30":
@@ -70,13 +77,13 @@ function LevelCategory() {
         setExplanation([
           "Learning to judge where the ball is going althought coverage is weak",
           "Can sustain a short rally of slow pace",
-          "can rally 6 balls in a row"
+          "can rally 6 balls in a row",
         ]);
         setLevel({
           groundStroke: "30",
           returnOfServe: "30",
           netPlay: "30",
-          serve: "30"
+          serve: "30",
         });
         break;
       case "50":
@@ -84,13 +91,13 @@ function LevelCategory() {
         setExplanation([
           "Fairly consistent when hitting medium-paced shots",
           "Lacks of execution when trying for directional control",
-          "Needs work on depth and variety"
+          "Needs work on depth and variety",
         ]);
         setLevel({
           groundStroke: "50",
           returnOfServe: "50",
           netPlay: "35",
-          serve: "35"
+          serve: "35",
         });
         break;
       case "60":
@@ -98,13 +105,13 @@ function LevelCategory() {
         setExplanation([
           "Has achieved improved stroke",
           "Starting to exhibit more aggressive net play",
-          "Has improved court coverage"
+          "Has improved court coverage",
         ]);
         setLevel({
           groundStroke: "60",
           returnOfServe: "60",
           netPlay: "50",
-          serve: "50"
+          serve: "50",
         });
         break;
       case "70":
@@ -112,13 +119,13 @@ function LevelCategory() {
         setExplanation([
           "Has dependable strokes with power",
           "Use lobs, overheads, approach shots and volleys with some success",
-          "Rallies may be lost due to impatience"
+          "Rallies may be lost due to impatience",
         ]);
         setLevel({
           groundStroke: "70",
           returnOfServe: "70",
           netPlay: "65",
-          serve: "65"
+          serve: "65",
         });
         break;
       case "80":
@@ -126,13 +133,13 @@ function LevelCategory() {
         setExplanation([
           "Starting to master the use of power and spins",
           "Can handle pace and sound footwork",
-          "Can hit first serves with power and accuracy and place the second serve"
+          "Can hit first serves with power and accuracy and place the second serve",
         ]);
         setLevel({
           groundStroke: "90",
           returnOfServe: "90",
           netPlay: "85",
-          serve: "85"
+          serve: "85",
         });
         break;
       case "90":
@@ -140,13 +147,13 @@ function LevelCategory() {
         setExplanation([
           "Able to maintain a consistent rally on 10 fast balls",
           "Very steady strokes or has a dominant shot",
-          "Periodically succeeds when sttempting a quality shot"
+          "Periodically succeeds when sttempting a quality shot",
         ]);
         setLevel({
           groundStroke: "100",
           returnOfServe: "100",
           netPlay: "95",
-          serve: "95"
+          serve: "95",
         });
         break;
       default:
@@ -154,25 +161,25 @@ function LevelCategory() {
         setExplanation([
           "Learning to judge where the ball is going althought coverage is weak",
           "Can sustain a short rally of slow pace",
-          "can rally 7 balls in a row"
+          "can rally 7 balls in a row",
         ]);
         setLevel({
           groundStroke: "10",
           returnOfServe: "10",
           netPlay: "10",
-          serve: "10"
+          serve: "10",
         });
         break;
     }
   };
   const circleContainerStyle = {
-    width: "300px",
+    width: "200px",
     height: "100px",
     display: "inline-block",
     textAlign: "center",
     marginBottom: "85px",
     marginRight: "15px",
-    marginLeft: "15px"
+    marginLeft: "15px",
   };
   const colorMap = ["#ccff13", "#6fdf87", "#4ccdd1", "#2f5acf", "#df5f2d"];
   const color = colorMap[parseInt(Math.random() * 5, 10)];
@@ -183,12 +190,12 @@ function LevelCategory() {
         {" "}
         SELF-RATING GUIDE
       </div>
-      <h1>National Tennis Rating Program</h1>
+      <h2>National Tennis Rating Program (NTRP)</h2>
       <Explanation>
         <div style={{ marginRight: "50px" }}>
           <select
             onChange={levelGuiding}
-            style={{ fontSize: "50px", width: "100%" }}
+            style={{ fontSize: "25px", width: "300px" }}
           >
             <option value="10">NTRP 1.5</option>
             <option value="20">NTRP 2.0</option>

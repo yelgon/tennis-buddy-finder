@@ -35,11 +35,11 @@ const Button = styled.div`
   bottom: 10%;
   transform: translate(-30%, -25%);
   button {
-    width: 230px;
-    height: 65px;
-    border-radius: 50%;
+    width: 200px;
+    height: 40px;
+    border-radius: 15px;
     border: none;
-    font-size: 30px;
+    font-size: 25px;
     font-style: bold;
     :hover {
       cursor: pointer;

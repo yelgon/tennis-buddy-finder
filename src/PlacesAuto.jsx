@@ -48,7 +48,20 @@ const Button = styled.div`
   position: absolute;
   left: 50%;
   bottom: 5%;
-  transform: translate(-50%, -50%);
+  transform: translate(-30%, -25%);
+  button {
+    width: 200px;
+    height: 40px;
+    border-radius: 15px;
+    border: none;
+    font-size: 25px;
+    font-style: bold;
+    :hover {
+      cursor: pointer;
+      background-color: ${(props) =>
+        props.themeToggle ? "#FD7013" : "#393E46"};
+    }
+  }
 `;
 
 function PlacesAuto() {
@@ -174,7 +187,14 @@ function PlacesAuto() {
               </InputMenu>
               <Address>
                 <div>Address</div>
-                <div>{address}</div>
+                <div
+                  style={{
+                    marginTop: "10px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  {address}
+                </div>
 
                 <div>
                   <input

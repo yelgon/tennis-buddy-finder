@@ -17,8 +17,8 @@ const Container = styled.div`
   max-width: 100%;
   height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: ${props => (props.themeToggle ? "#2d2d2d" : "white")};
-  color: ${props => (props.themeToggle ? "white" : "black")};
+  background-color: ${(props) => (props.themeToggle ? "#2d2d2d" : "white")};
+  color: ${(props) => (props.themeToggle ? "white" : "black")};
 `;
 
 const Wrapper = styled.div`
@@ -37,7 +37,7 @@ const NewMatch = styled.div`
   font-size: 13px;
   font-weight: bold;
   width: 300px;
-  box-shadow: 5px 10px ${props => (props.themeToggle ? "#f1404b" : "#13334c")};
+  box-shadow: 5px 10px ${(props) => (props.themeToggle ? "#f1404b" : "#13334c")};
   border-radius: 15px;
   .menu {
     display: grid;
@@ -45,7 +45,7 @@ const NewMatch = styled.div`
     padding: 5px;
     justify-content: space-between;
     input {
-      width: 195px;
+      width: 100%;
     }
   }
 `;
@@ -59,7 +59,8 @@ const NewMatchButton = styled.div`
     border-radius: 20px;
     :hover {
       cursor: pointer;
-      background-color: ${props => (props.themeToggle ? "#f1404b" : "#263859")};
+      background-color: ${(props) =>
+        props.themeToggle ? "#f1404b" : "#263859"};
     }
   }
 `;
@@ -76,10 +77,10 @@ class UnconnectedMatchBoard extends Component {
       month: "",
       day: "",
       year: "",
-      time: ""
+      time: "",
     };
   }
-  dateHandler = e => {
+  dateHandler = (e) => {
     console.log(e);
     const dataToString = e.toString().split(" ");
     this.setState({ date: e });
@@ -89,19 +90,19 @@ class UnconnectedMatchBoard extends Component {
     this.setState({ year: dataToString[3] });
     this.setState({ time: dataToString[4].split(":")[0] });
   };
-  nameHandler = e => {
+  nameHandler = (e) => {
     this.setState({ name: e.target.value });
   };
-  levelHandler = e => {
+  levelHandler = (e) => {
     this.setState({ level: e.target.value });
   };
-  courtHandler = e => {
+  courtHandler = (e) => {
     this.setState({ courtName: e.target.value });
   };
-  typeHandler = e => {
+  typeHandler = (e) => {
     this.setState({ playType: e.target.value });
   };
-  submitHandler = async event => {
+  submitHandler = async (event) => {
     event.preventDefault();
     let data = new FormData();
     data.append("name", this.state.name);
@@ -125,7 +126,7 @@ class UnconnectedMatchBoard extends Component {
       month: "",
       day: "",
       year: "",
-      time: ""
+      time: "",
     });
   };
 
@@ -135,7 +136,7 @@ class UnconnectedMatchBoard extends Component {
       <Container themeToggle={themeToggle}>
         <PageName>Match Board</PageName>
         <Wrapper>
-          {this.props.matches.map(p => (
+          {this.props.matches.map((p) => (
             <Post key={p._id} contents={p} user={this.props.currentUser} />
           ))}
           <NewMatch themeToggle={themeToggle}>
@@ -200,11 +201,11 @@ class UnconnectedMatchBoard extends Component {
     );
   }
 }
-let mapStateToProps = st => {
+let mapStateToProps = (st) => {
   return {
     matches: st.matches,
     currentUser: st.currentUser,
-    theme: st.toggle
+    theme: st.toggle,
   };
 };
 let MatchBoard = connect(mapStateToProps)(UnconnectedMatchBoard);
