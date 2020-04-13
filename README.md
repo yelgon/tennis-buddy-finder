@@ -1,7 +1,5 @@
-Full stack development template
+Second full-stack project.
 
-To start the server, run `nodemon server.js`
+To test this project you have to create a Google billing account.
 
-Modify the `server.js` file to add endpoints
-
-The frontend code goes in the `/src` directory
+And then get API key to replace your own key
